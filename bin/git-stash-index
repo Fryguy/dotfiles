@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#
+# Add the following to your profile for autocompletion:
+# _git_stash_index () { _git_stash "$@"; }
+#
+
+set -e
+
+git diff --quiet --exit-code --cached && echo "No changes found in the index." && exit 1
+git commit -q -m "TEMP: git-stash-index"
+git stash save -q --include-untracked "TEMP: git-stash-index"
+git reset -q HEAD~
+git stash "$@"
+git stash pop -q stash@{1}

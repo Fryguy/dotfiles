@@ -1,0 +1,24 @@
+#! /bin/bash
+if [ "$1" == "" -o "$1" == "--help" ]; then
+  echo "Usage:"
+  echo "  pg_r db file"
+  echo "  pg_r file    (db=vmdb_production)"
+  exit 0
+fi
+
+PGR_DB=vmdb_production
+if [ "$2" == "" ]; then
+  PGR_FILE=$1
+else
+  PGR_DB=$1
+  PGR_FILE=$2
+fi
+
+headline=`head -n1 $PGR_FILE`
+if [[ "$headline" == PGDMP* ]]; then
+  echo "Restoring with pg_restore..."
+  pg_restore -i -v -h localhost -p 5432 -U root -d $PGR_DB "$PGR_FILE"
+else
+  echo "Restoring using psql..."
+  psql -h localhost -p 5432 -U root -d $PGR_DB -f "$PGR_FILE"
+fi

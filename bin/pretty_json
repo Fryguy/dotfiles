@@ -1,0 +1,5 @@
+#! /usr/bin/env ruby
+
+require 'json'
+require 'pp'
+pp JSON.parse(STDIN.read)

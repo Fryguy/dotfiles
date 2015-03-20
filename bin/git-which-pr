@@ -1,0 +1,2 @@
+#! /bin/bash
+git describe --all --contains $1

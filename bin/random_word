@@ -1,0 +1,2 @@
+#! /bin/bash
+head -$(ruby -e "puts (rand * `wc -l < /usr/share/dict/words`).to_i") /usr/share/dict/words | tail -1

@@ -1,0 +1,24 @@
+#! /bin/bash
+if [ "$1" == "" -o "$1" == "--help" ]; then
+  echo "Usage:"
+  echo "  pg_d host db file"
+  echo "  pg_d host file    (db=vmdb_production)"
+  echo "  pg_d file         (host=localhost and db=vmdb_production)"
+  exit 0
+fi
+
+PGD_HOST=localhost
+PGD_DB=vmdb_production
+if [ "$2" == "" ]; then
+  PGD_FILE=$1
+elif [ "$3" == "" ]; then
+  PGD_HOST=$1
+  PGD_FILE=$2
+else
+  PGD_HOST=$1
+  PGD_DB=$2
+  PGD_FILE=$3
+fi
+# Exclude tables with -T=table; multiple options for multiple tables.
+# e.g. -T binary_blob_parts -T ems_events -T states -T miq_report_result_details -T metrics -T metric_rollups -T vim_performances -T vim_performance_states -T vim_performance_tag_values
+pg_dump -v -Fc -h $PGD_HOST -p 5432 -U root -f "$PGD_FILE" $PGD_DB

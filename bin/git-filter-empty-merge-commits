@@ -1,0 +1,17 @@
+#!/bin/bash
+# Removes empty merge commits.
+# Empty merge commits usually occurs after one does a filter-branch that
+#   removes commits, even if --prune-empty is used, because --prune-empty
+#   specifically only looks at commits with a single parent.
+#
+#   See: http://git.661346.n2.nabble.com/Removing-useless-merge-commit-with-quot-filter-branch-quot-td7356544.html
+
+git filter-branch -f --prune-empty --parent-filter 'ruby -e "
+old_parents = gets.chomp.gsub(\"-p \", \"\").split
+new_parents = old_parents
+unless old_parents.empty?
+  independent = \`git show-branch --independent #{old_parents.join(\" \")}\`.chomp
+  new_parents = independent == old_parents.first ? [independent] : old_parents
+end
+puts new_parents.map { |p| \"-p #{p}\" }.join(\" \")
+"' -- --all

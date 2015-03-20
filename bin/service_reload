@@ -1,0 +1,4 @@
+#!/bin/bash
+launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.$1.plist
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.$1.plist
+

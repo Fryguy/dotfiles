@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#
+# Add the following to your profile for autocompletion:
+# _git_cherry_pick_to () { __gitcomp "$(__git_refs)"; }
+#
+
+set -e
+
+src_branch=$(git symbolic-ref -q HEAD)
+src_branch=${src_branch##refs/heads/}
+src_branch=${src_branch:-HEAD}
+
+dest_branch=$1
+amount=${2:--1}
+
+git checkout $dest_branch && git pull && git cherry-pick $amount ${src_branch}~1

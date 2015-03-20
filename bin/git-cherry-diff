@@ -1,0 +1,2 @@
+#!/bin/bash
+git cherry $1 $2 | grep '^+' | cut -f 2 -d ' ' | while read commit; do git lg -1 $commit; done

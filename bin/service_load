@@ -1,0 +1,2 @@
+#!/bin/bash
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.$1.plist

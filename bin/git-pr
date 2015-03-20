@@ -1,0 +1,2 @@
+#!/bin/bash
+git fetch upstream pull/$1/head:pull_request_$1

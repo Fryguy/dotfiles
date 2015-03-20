@@ -1,0 +1,47 @@
+#! /usr/bin/env ruby
+# Taken from http://blog.nilsjonsson.com/post/4421450571/rebasing-tags-in-git-repositories
+
+def pluralize(word, count=2, plural_word=nil)
+  plural_word ||= "#{word}s"
+  "#{count} #{(count == 1) ? word : plural_word}"
+end
+
+def git_exec(cmd, dry_run=false)
+  if dry_run
+    puts cmd
+  else
+    `#{cmd}`
+  end
+end
+
+unless (ARGV.length >= 1) &&
+       (good_revision = system("git log -1 #{ARGV.first} 2>/dev/null"))
+  puts "Unknown revision '#{ARGV.first}'" unless good_revision
+  puts "Usage: #{File.basename __FILE__} <new_base>"
+  exit 1
+end
+
+new_base = ARGV.first
+tags = ARGV[1..-1]
+tags = `git tag -l`.split("\n") if tags.empty?
+puts "Rebasing #{pluralize 'tag', tags.length} onto '#{new_base}'"
+new_commits = tags.each do |t|
+  commit_hash, tree_hash = `git log -1 --pretty=format:"%H %T" #{t.inspect}`.chomp.split(' ')
+  identicals = `git log --pretty="%H %T" #{new_base} | grep #{tree_hash}`.chomp.split("\n")
+  identicals.collect!(&:split).reject! do |commit, tree|
+    # Ignore the commit that the tag currently points to.
+    commit == commit_hash
+  end
+  if identicals.length == 1
+    commit = identicals.first.first
+    git_exec("git tag --force #{t} #{commit}")
+    puts "Moved tag '#{t}' from commit #{commit_hash} to commit #{commit}"
+  else
+    count = identicals.empty? ? 'no' : identicals.length.to_s
+    print "Can't rebase tag '#{t}' because there are #{count} identical commits on '#{new_base}'"
+    puts(identicals.empty? ? '' : ':')
+    identicals.each do |c|
+      puts "* #{c}"
+    end
+  end
+end

@@ -21,7 +21,7 @@ export PATH=$PATH:/Users/jfrey/projects/external/willgit/mainline/bin
 export PATH=$PATH:/opt/bfg
 
 # Android
-export ANDROID_HOME=/opt/android-sdk-macosx
+export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # Ruby

@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+# This has to be run from master
+git checkout master
+
+# Update our list of remotes - allow failures if remotes are unreachable
+set +e
+git fetch --all --prune
+set -e
+
+git remote prune origin
+
+# Remove local fully merged branches
+echo
+echo "The following local branches are fully merged and will be removed:"
+git branch --merged master | grep -v 'master$'
+
+read -p "Continue (y/N)? "
+if [ "$REPLY" == "y" ]; then
+  git branch --merged master | grep -v 'master$' | xargs git branch -d
+fi
+
+# Remove remote fully merged branches
+echo
+echo "The following remote branches are fully merged and will be removed:"
+git branch -r --merged master | sed 's/origin\///' | grep -v 'master$'
+
+read -p "Continue (y/N)? "
+if [ "$REPLY" == "y" ]; then
+  git branch -r --merged master | sed 's/origin\///' | grep -v 'master$' | xargs -I% git push origin :%
+fi

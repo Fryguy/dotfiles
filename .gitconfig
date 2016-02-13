@@ -4,26 +4,20 @@
 [color]
 	ui = auto
 	diff = auto
-[gui]
-	recentrepo = /Users/jfrey/projects/github/ManageIQ/rubyrep
-	recentrepo = /Users/jfrey/dev
 [core]
 	excludesfile = /Users/jfrey/.gitignore_global
 	pager = less -FX
-[difftool "sourcetree"]
-	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[difftool "diffmerge"]
+	cmd = diffmerge --nosplash \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 	trustExitCode = true
+[merge]
+	tool = diffmerge
+	renamelimit = 99999
 [github]
 	user = Fryguy
 	token = 
-[mergetool "diffmerge"]
-	cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
-	trustExitCode = false
-[merge]
-	tool = diffmerge
 [color "diff"]
 	whitespace = red reverse
 [credential]
@@ -43,3 +37,5 @@
 	autosquash = true
 [help]
 	autocorrect = 1
+[rerere]
+	enabled = 1

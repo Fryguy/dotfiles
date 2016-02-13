@@ -24,16 +24,17 @@ export PATH=$PATH:/opt/bfg
 export ANDROID_HOME=/opt/android-sdk-macosx
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
+# Ruby
+export RUBY_GC_HEAP_GROWTH_MAX_SLOTS=300000
+export RUBY_GC_HEAP_INIT_SLOTS=600000
+export RUBY_GC_HEAP_GROWTH_FACTOR=1.25
+
 # GitHub
 export GITHUB_GEM_API_TOKEN=
 
 # Homebrew
 export HOMEBREW_SRC=/usr/local/Library/Homebrew
 export HOMEBREW_GITHUB_API_TOKEN=
-
-# Ruby
-export RUBY_GC_MALLOC_LIMIT=32000000
-export RUBY_GC_HEAP_INIT_SLOTS=800000
 
 # Bundler
 export BUNDLER_EDITOR=/Users/jfrey/bin/subl
@@ -45,4 +46,4 @@ alias bundle_135=""
 memcache_client(){ if [ "$1" = "--help" ]; then echo -e "usage: memcache_client memcache-command [arguments]\nwhere memcache-command might be:\nset\nadd\nget[s]\nappend\nprepend\nreplace\ndelete\nincr\ndecr\ncas\nstats\nverbosity\nversion\nnotes:\n  exptime argument is set to 0 (no expire)\n  flags argument is set to 1 (arbitrary)"; else { case $1 in st*|[vgid]*) printf "%s " "$@";; *) dd if=$3 2>&1|sed '$!d;/^0/d;s/ .*//;s/^/'"$1"' '"$2"' 1 0 /; r '"$3"'' 2>/dev/null;;esac;printf "\r\nquit\r\n";}|nc -n 127.0.0.1 11211; fi }
 
 # ManageIQ
-alias vmdb="cd ~/dev/manageiq/vmdb"
+alias vmdb="[ -f ~/dev/manageiq/vmdb/Gemfile ] && cd ~/dev/manageiq/vmdb || cd ~/dev/manageiq"

@@ -1,8 +1,17 @@
-#!/bin/bash
+#!/bin/bash -e
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-for OBJECT in bin .gemrc .gitconfig .gitignore_global .irbrc .profile .pryrc; do
-  echo "Linking $OBJECT"
-  ln -sf $DIR/$OBJECT ~/$OBJECT
+for target in \
+	bin \
+	"Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings" \
+	.gemrc \
+	.gitconfig \
+	.gitignore_global \
+	.irbrc \
+	.profile \
+	.pryrc
+do
+  echo "Linking $DIR/$target as ~/$target"
+  ln -sf "$DIR/$target" ~/"$target"
 done

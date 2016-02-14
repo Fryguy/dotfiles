@@ -15,3 +15,5 @@ do
   echo "Linking $DIR/$target as ~/$target"
   ln -sf "$DIR/$target" ~/"$target"
 done
+
+rm -f ~/bin/bin

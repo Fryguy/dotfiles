@@ -14,6 +14,6 @@ for target in \
 	.profile \
 	.pryrc
 do
-  echo "Linking $DIR/$target as ~/$target"
+  echo "Linking $target"
   ln -sfh "$DIR/$target" ~/"$target"
 done

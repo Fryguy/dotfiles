@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>ManageIQ Log</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>^\[[-0-9]{4}\] D,</string>
+			<key>end</key>
+			<string>(?=\A\[[-0-9]{4}\])</string>
+			<key>name</key>
+			<string>debug.text.manageiq_log</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\[[-0-9]{4}\] I,</string>
+			<key>end</key>
+			<string>(?=\A\[[-0-9]{4}\])</string>
+			<key>name</key>
+			<string>info.text.manageiq_log</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\[[-0-9]{4}\] W,</string>
+			<key>end</key>
+			<string>(?=\A\[[-0-9]{4}\])</string>
+			<key>name</key>
+			<string>warn.text.manageiq_log</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\[[-0-9]{4}\] E,</string>
+			<key>end</key>
+			<string>(?=\A\[[-0-9]{4}\])</string>
+			<key>name</key>
+			<string>error.text.manageiq_log</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\[[-0-9]{4}\] F,</string>
+			<key>end</key>
+			<string>(?=\A\[[-0-9]{4}\])</string>
+			<key>name</key>
+			<string>fatal.text.manageiq_log</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\[[-0-9]{4}\] A,</string>
+			<key>end</key>
+			<string>(?=\A\[[-0-9]{4}\])</string>
+			<key>name</key>
+			<string>any.text.manageiq_log</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.manageiq_log</string>
+	<key>uuid</key>
+	<string>BD106478-7A3C-11E3-84CD-A4B197FFFE9A</string>
+</dict>
+</plist>

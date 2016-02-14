@@ -14,7 +14,5 @@ for target in \
 	.pryrc
 do
   echo "Linking $DIR/$target as ~/$target"
-  ln -sf "$DIR/$target" ~/"$target"
+  ln -sfh "$DIR/$target" ~/"$target"
 done
-
-rm -f ~/bin/bin

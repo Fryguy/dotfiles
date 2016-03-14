@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Ignore file-only checkouts
+[[ $3 -ne 1 ]] && exit 0
+
+git_root=$(git rev-parse --show-toplevel)
+root=$git_root
+[[ -d "$root/vmdb" ]] && root="$root/vmdb"
+gemfile_lock="$root/Gemfile.lock"
+
+# Ignore backups when Gemfile.lock is committed
+git ls-files --error-unmatched "$gemfile_lock" >/dev/null 2>&1
+[[ $? -eq 0 ]] && echo "Skip backup" && exit 0
+
+from_branch=$(git branch --points-at $1 | rev | cut -d ' ' -f1 | rev)
+to_branch=$(git branch --points-at $2 | rev | cut -d ' ' -f1 | rev)
+
+# Ignore "git checkout" without args
+[[ "$from_branch" == "$to_branch" ]] && exit 0
+
+lockfiles="$git_root/.lockfiles"
+mkdir -p $lockfiles
+
+lockfile="Gemfile.lock.$from_branch"
+cp "$gemfile_lock" "$lockfiles/$lockfile"
+echo "Gemfile.lock saved to $lockfile"
+
+lockfile="Gemfile.lock.$([[ -f "$lockfiles/Gemfile.lock.$to_branch" ]] && echo $to_branch || echo master)"
+cp "$lockfiles/$lockfile" "$gemfile_lock"
+echo "Gemfile.lock restored to $lockfile"

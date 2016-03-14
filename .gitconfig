@@ -7,6 +7,10 @@
 [core]
 	excludesfile = /Users/jfrey/.gitignore_global
 	pager = less -FX
+[pager]
+    log = diff-highlight | less -FX
+    show = diff-highlight | less -FX
+    diff = diff-highlight | less -FX
 [difftool "diffmerge"]
 	cmd = diffmerge --nosplash \"$LOCAL\" \"$REMOTE\"
 [mergetool "diffmerge"]
@@ -18,8 +22,6 @@
 [github]
 	user = Fryguy
 	token = 
-[color "diff"]
-	whitespace = red reverse
 [credential]
 	helper = osxkeychain
 [pull]

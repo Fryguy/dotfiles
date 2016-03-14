@@ -39,3 +39,7 @@
 	autocorrect = 1
 [rerere]
 	enabled = 1
+[init]
+	templatedir = /Users/jfrey/.git-template-with-git-hooks
+[alias]
+	ctags = !/Users/jfrey/.git_hooks/ctags

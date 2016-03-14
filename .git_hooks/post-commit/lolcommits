@@ -1,0 +1,2 @@
+#!/bin/bash
+lolcommits --capture --capture --delay=1 --fork --stealth #--animate=3

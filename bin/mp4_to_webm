@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# From http://superuser.com/questions/556463/converting-video-to-webm-with-ffmpeg-avconv/556677#556677
+#   and for the scaling info: https://trac.ffmpeg.org/wiki/Scaling%20(resizing)%20with%20ffmpeg
+ffmpeg -i "$1" -c:v libvpx -qmin 0 -qmax 50 -crf 10 -b:v 2M -vf scale=-1:480 "$2"

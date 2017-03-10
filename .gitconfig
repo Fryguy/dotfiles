@@ -45,3 +45,5 @@
 	templatedir = /Users/jfrey/.git-template-with-git-hooks
 [alias]
 	ctags = !/Users/jfrey/.git_hooks/ctags
+[log]
+	follow = true

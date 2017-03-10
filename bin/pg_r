@@ -17,7 +17,7 @@ fi
 headline=`head -n1 $PGR_FILE`
 if [[ "$headline" == PGDMP* ]]; then
   echo "Restoring with pg_restore..."
-  pg_restore -i -v -h localhost -p 5432 -U root -d $PGR_DB "$PGR_FILE"
+  pg_restore -v -h localhost -p 5432 -U root -d $PGR_DB "$PGR_FILE"
 else
   echo "Restoring using psql..."
   psql -h localhost -p 5432 -U root -d $PGR_DB -f "$PGR_FILE"

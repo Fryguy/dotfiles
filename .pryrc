@@ -1,3 +1,35 @@
+Pry.config.theme_options = {:paint_key_as_symbol => true}
+Pry.config.theme = "twilight"
+
+Pry.config.exception_handler = proc do |output, exception, _|
+  require 'active_support/backtrace_cleaner' rescue nil unless defined?(ActiveSupport)
+
+  backtrace = exception.backtrace
+  if defined?(ActiveSupport)
+    bc = ActiveSupport::BacktraceCleaner.new
+    Gem.path.each do |gem_path|
+      bc.add_filter { |line| line.gsub(%r{^#{gem_path}/gems/(.+?)/}, '(\1) ') }
+    end
+    bc.add_filter { |line| line.gsub(%r{^#{File.dirname(RbConfig::CONFIG["prefix"])}/(.+?)/}, '(\1) ') }
+
+    # Suppress everything after the line: (pry):1:in `<main>'
+    saw_pry = false
+    bc.add_silencer { |line| saw_pry || ((saw_pry = line =~ /^\(pry\):\d+/) && false) }
+
+    backtrace = bc.clean(backtrace)
+  end
+
+  output.puts "#{exception.class}: #{exception.message}"
+  output.puts "from #{backtrace.join("\n")}"
+end
+
+if defined?(PryByebug)
+  Pry.commands.alias_command 'c', 'continue'
+  Pry.commands.alias_command 's', 'step'
+  Pry.commands.alias_command 'n', 'next'
+  Pry.commands.alias_command 'f', 'finish'
+end
+
 if defined?(Rails) && Rails.env
   extend Rails::ConsoleMethods
 end

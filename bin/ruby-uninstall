@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+ruby_version=$1-$2
+
+if [ ! -d ~/.rubies/$ruby_version ]; then
+	echo $ruby_version is an invalid Ruby version
+	exit 1
+fi
+
+echo "Removing $ruby_version..."
+rm -rf ~/.rubies/$ruby_version
+echo "Removing $ruby_version gems..."
+rm -rf ~/.gem/$1/$2
+echo "Removing $ruby_version source..."
+rm -rf ~/src/$ruby_version*

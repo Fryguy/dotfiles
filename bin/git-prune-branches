@@ -5,12 +5,8 @@ set -e
 git checkout master
 git pull upstream master
 
-# Update our list of remotes - allow failures if remotes are unreachable
-set +e
-git fetch --all --prune
-set -e
-
-git remote prune origin
+# Update the remote and remove any branches that no longer exist
+git fetch origin --prune
 
 # Remove local fully merged branches
 echo

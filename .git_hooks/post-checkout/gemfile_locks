@@ -23,8 +23,7 @@ mkdir -p $lockfiles
 
 lockfile="Gemfile.lock.$from_branch"
 cp "$gemfile_lock" "$lockfiles/$lockfile"
-echo "Gemfile.lock saved to $lockfile"
 
 lockfile="Gemfile.lock.$([[ -f "$lockfiles/Gemfile.lock.$to_branch" ]] && echo $to_branch || echo master)"
 cp "$lockfiles/$lockfile" "$gemfile_lock"
-echo "Gemfile.lock restored to $lockfile"
+echo "Using $lockfile"

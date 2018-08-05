@@ -44,6 +44,7 @@
 [init]
 	templatedir = /Users/jfrey/.git-template-with-git-hooks
 [alias]
+	lg = log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset\"
 	ctags = !/Users/jfrey/.git_hooks/ctags
 [log]
 	follow = true

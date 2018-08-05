@@ -1,8 +1,0 @@
-#!/bin/bash
-
-#
-# Add the following to your profile for autocompletion
-# _git_lg () { _git_log "$@"; }
-#
-
-git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' $@

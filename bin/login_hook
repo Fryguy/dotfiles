@@ -1,0 +1,3 @@
+#!/bin/bash
+
+'/Applications/Turbo Boost Switcher.app/Contents/MacOS/Turbo Boost Switcher' &

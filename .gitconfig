@@ -1,6 +1,7 @@
 [user]
 	email = fryguy9@gmail.com
 	name = Jason Frey
+	signingkey = 
 [color]
 	ui = auto
 	diff = auto
@@ -46,3 +47,5 @@
 	ctags = !/Users/jfrey/.git_hooks/ctags
 [log]
 	follow = true
+[commit]
+	gpgsign = true

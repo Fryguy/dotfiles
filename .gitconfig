@@ -41,8 +41,6 @@
 	autocorrect = 1
 [rerere]
 	enabled = 1
-[init]
-	templatedir = /Users/jfrey/.git-template-with-git-hooks
 [alias]
 	lg = log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset\"
 	ctags = !/Users/jfrey/.git_hooks/ctags

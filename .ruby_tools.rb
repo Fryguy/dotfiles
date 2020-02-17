@@ -214,7 +214,7 @@ module RubyTools
     end
 
     def self.ems_registry
-      YAML.load_file(File.expand_path("~/.fryguy_ems_registry.yml")) rescue {}
+      YAML.load_file(File.expand_path("~/.manageiq_ems_registry.yml")) rescue {}
     end
 
     private_class_method def self.ems_create_from_registry(name)

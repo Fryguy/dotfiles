@@ -31,12 +31,9 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 # Minishift
 export PATH=$PATH:/Users/jfrey/.minishift/cache/oc/v3.6.0
 
-# GitHub
-export GITHUB_GEM_API_TOKEN=
 
 # Homebrew
 export HOMEBREW_SRC=/usr/local/Library/Homebrew
-export HOMEBREW_GITHUB_API_TOKEN=
 
 # Bundler
 export BUNDLER_EDITOR=/Users/jfrey/bin/subl
@@ -49,3 +46,6 @@ memcache_client(){ if [ "$1" = "--help" ]; then echo -e "usage: memcache_client 
 
 # ManageIQ
 alias vmdb="[ -f ~/dev/manageiq/vmdb/Gemfile ] && cd ~/dev/manageiq/vmdb || cd ~/dev/manageiq"
+
+# Tokens
+source /Users/jfrey/.profile_tokens

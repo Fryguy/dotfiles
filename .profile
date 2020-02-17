@@ -28,6 +28,8 @@ export PATH=$PATH:/opt/bfg
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
+# Minishift
+export PATH=$PATH:/Users/jfrey/.minishift/cache/oc/v3.6.0
 
 # GitHub
 export GITHUB_GEM_API_TOKEN=

@@ -44,6 +44,9 @@ export LLVM_CONFIG=/usr/local/opt/llvm@8/bin/llvm-config
 # Homebrew
 export HOMEBREW_SRC=/usr/local/Library/Homebrew
 
+# Bat
+export BAT_THEME="Twilight (Fryguy)"
+
 # Bundler
 export BUNDLER_EDITOR=/Users/jfrey/bin/subl
 alias be="bundle exec"

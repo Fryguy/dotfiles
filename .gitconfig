@@ -8,10 +8,6 @@
 [core]
 	excludesfile = /Users/jfrey/.gitignore_global
 	pager = less -FX
-[pager]
-    log = diff-highlight | less -FX
-    show = diff-highlight | less -FX
-    diff = diff-highlight | less -FX
 [difftool "diffmerge"]
 	cmd = diffmerge --nosplash \"$LOCAL\" \"$REMOTE\"
 [mergetool "diffmerge"]

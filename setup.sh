@@ -9,6 +9,7 @@ for target in \
 	.irbrc \
 	.profile \
 	.pryrc \
+	.ruby_tools.rb \
 	bin \
 	Documents/dotfiles \
 	"Library/Application Support/Sublime Text 3/Packages/ManageIQ Log" \

@@ -1,2 +1,3 @@
 #! /bin/bash
-git describe --all --contains $1
+commit=$(perl -ne 'print if ($seen{$_} .= @ARGV) =~ /10$/' <(git rev-list --ancestry-path $1..master) <(git rev-list --first-parent $1..master) | tail -n 1)
+git log -1 --oneline $commit | cut -d ' ' -f 5

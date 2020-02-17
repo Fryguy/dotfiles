@@ -13,7 +13,6 @@ for target in \
 	.ruby_tools.rb \
 	bin \
 	Documents/dotfiles \
-	"Library/Application Support/Sublime Text 3/Packages/ManageIQ Log" \
 	"Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings" \
 	"Library/Application Support/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme"
 do

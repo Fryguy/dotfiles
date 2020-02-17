@@ -1,6 +1,6 @@
 #!/bin/bash -e
 echo "Manually remove any remotes you don't need, then manually"
-echo "  remove any references to those in .gits/refs/remotes and"
+echo "  remove any references to those in .git/refs/remotes and"
 echo "  .git/logs/refs/remotes."
 echo
 read -rsp $'Press any key to continue...\n' -n1 key

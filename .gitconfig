@@ -40,3 +40,5 @@
 	follow = true
 [commit]
 	gpgsign = true
+[branch]
+	sort = -committerdate

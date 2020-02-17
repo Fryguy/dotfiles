@@ -8,13 +8,7 @@
 [core]
 	excludesfile = /Users/jfrey/.gitignore_global
 	pager = less -FX
-[difftool "diffmerge"]
-	cmd = diffmerge --nosplash \"$LOCAL\" \"$REMOTE\"
-[mergetool "diffmerge"]
-	cmd = diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-	trustExitCode = true
 [merge]
-	tool = diffmerge
 	renamelimit = 99999
 [github]
 	user = Fryguy

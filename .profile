@@ -50,7 +50,6 @@ export BAT_THEME="Twilight (Fryguy)"
 # Bundler
 export BUNDLER_EDITOR=/Users/jfrey/bin/subl
 alias be="bundle exec"
-alias bundle_135=""
 
 # Memcache
 # full memcache client: http://www.commandlinefu.com/commands/view/8662/full-memcache-client-in-under-255-chars-uses-dd-sed-and-nc

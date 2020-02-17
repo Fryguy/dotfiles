@@ -18,6 +18,9 @@ export PATH=$PATH:/Users/jfrey/projects/external/git-aliae/bin
 export PATH=$PATH:/Users/jfrey/projects/external/git-aliae/wip
 export PATH=$PATH:/Users/jfrey/projects/external/DanielVartanov/willgit/bin
 
+# GPG
+export GPG_TTY=$(tty)
+
 # BFG Repo Cleaner: http://rtyley.github.io/bfg-repo-cleaner/
 export PATH=$PATH:/opt/bfg
 

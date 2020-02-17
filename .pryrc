@@ -1,33 +1,32 @@
+require "pry"
+
 Pry.config.theme_options = {:paint_key_as_symbol => true}
 Pry.config.theme = "twilight"
 
 Pry.config.exception_handler = proc do |output, exception, _|
-  require 'active_support/backtrace_cleaner' rescue nil unless defined?(ActiveSupport)
+  filter_paths =  Gem.path.map { |gem_path| File.join(gem_path, "gems") } # Gem paths
+  filter_paths << File.dirname(RbConfig::CONFIG["prefix"]) # Ruby path
 
-  backtrace = exception.backtrace
-  if defined?(ActiveSupport)
-    bc = ActiveSupport::BacktraceCleaner.new
-    Gem.path.each do |gem_path|
-      bc.add_filter { |line| line.gsub(%r{^#{gem_path}/gems/(.+?)/}, '(\1) ') }
-    end
-    bc.add_filter { |line| line.gsub(%r{^#{File.dirname(RbConfig::CONFIG["prefix"])}/(.+?)/}, '(\1) ') }
+  lines = exception.full_message.lines
+  reversed = lines[0]&.include?("Traceback")
+  iter = reversed ? :reverse_each : :each
 
-    # Suppress everything after the line: (pry):1:in `<main>'
-    saw_pry = false
-    bc.add_silencer { |line| saw_pry || ((saw_pry = line =~ /^\(pry\):\d+/) && false) }
+  saw_pry = nil
+  lines = lines.send(iter).with_object([]) do |line, arr|
+    # Shorten gem and Ruby paths
+    #if path = filter_paths.find { |path| line.include?(path) }
+    #  line.sub!(%r{#{path}/(.+?)/}, '(\1) ')
+    #end
+    line.sub!(ENV["HOME"], "~")
 
-    backtrace = bc.clean(backtrace)
+    # Suppress everything after the line: in `<main>'
+    #next if saw_pry || (saw_pry = line =~ /in `<main>'$/)
+
+    arr << line
   end
 
-  output.puts "#{exception.class}: #{exception.message}"
-  output.puts "from #{backtrace.join("\n")}"
-end
-
-if defined?(PryByebug)
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-  Pry.commands.alias_command 'f', 'finish'
+  lines.reverse! if reversed
+  output.print lines.join
 end
 
 if defined?(Rails) && Rails.env

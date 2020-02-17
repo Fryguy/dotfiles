@@ -15,6 +15,7 @@ _git_stash_without_index () { _git_stash "$@"; }
 _git_lg () { _git_log "$@"; }
 #   Third Party git extensions
 export PATH=$PATH:/Users/jfrey/projects/external/git-aliae/bin
+export PATH=$PATH:/Users/jfrey/projects/external/git-aliae/wip
 export PATH=$PATH:/Users/jfrey/projects/external/willgit/mainline/bin
 
 # BFG Repo Cleaner: http://rtyley.github.io/bfg-repo-cleaner/

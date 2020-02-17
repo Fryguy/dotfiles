@@ -31,6 +31,8 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 # Minishift
 export PATH=$PATH:/Users/jfrey/.minishift/cache/oc/v3.6.0
 
+# Python
+export PATH=$PATH:/Users/jfrey/Library/Python/3.7/bin
 
 # Homebrew
 export HOMEBREW_SRC=/usr/local/Library/Homebrew

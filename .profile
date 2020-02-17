@@ -37,6 +37,10 @@ export PATH=$PATH:/Users/jfrey/Library/Python/3.7/bin
 # NVM
 export NVM_DIR="$HOME/.nvm"
 source "/usr/local/opt/nvm/nvm.sh"
+
+# LLVM
+export LLVM_CONFIG=/usr/local/opt/llvm@8/bin/llvm-config
+
 # Homebrew
 export HOMEBREW_SRC=/usr/local/Library/Homebrew
 

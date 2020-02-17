@@ -34,6 +34,9 @@ export PATH=$PATH:/Users/jfrey/.minishift/cache/oc/v3.6.0
 # Python
 export PATH=$PATH:/Users/jfrey/Library/Python/3.7/bin
 
+# NVM
+export NVM_DIR="$HOME/.nvm"
+source "/usr/local/opt/nvm/nvm.sh"
 # Homebrew
 export HOMEBREW_SRC=/usr/local/Library/Homebrew
 

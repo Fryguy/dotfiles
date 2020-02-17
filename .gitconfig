@@ -35,7 +35,6 @@
 	enabled = 1
 [alias]
 	lg = log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset\"
-	ctags = !/Users/jfrey/.git_hooks/ctags
 [log]
 	follow = true
 [commit]

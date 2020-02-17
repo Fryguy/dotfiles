@@ -1,10 +1,41 @@
 {
+	"added_words":
+	[
+		"Ansible",
+		"Dsl",
+		"eval",
+		"foo",
+		"Gemfile",
+		"gemfiles",
+		"gemspec",
+		"github",
+		"gitignore",
+		"gitkeep",
+		"https",
+		"irb",
+		"Ivanchuk",
+		"Jansa",
+		"journald"
+		"Kubernetes",
+		"manageiq",
+		"Persisters",
+		"plugin",
+		"podification",
+		"rb",
+		"rearch",
+		"rearchitecture",
+		"reimplement",
+		"systemd",
+	],
+	"auto_complete": false,
 	"auto_complete_commit_on_tab": true,
 	"binary_file_patterns":
 	[
 		"public/assets/*",
 		"bower_components/*",
 		"node_modules/*",
+		"lcov-report/*",
+		"spec/manageiq/*",
 		"*.cache",
 		"*.dds",
 		"*.eot",
@@ -33,17 +64,21 @@
 		"Thumbs.db"
 	],
 	"find_selected_text": true,
-	"font_face": "Source Code Pro",
-	"font_size": 16,
+	"font_face": "Hack",
+	"font_size": 15,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"BracketHighlighter",
+		"GitGutter",
 		"LineEndings",
 		"ScopeHunter",
+		"TabNine",
 		"Vintage"
 	],
-	"line_padding_bottom": -0.25,
+	"line_padding_bottom": 1.0,
+	"line_padding_top": 1.0,
 	"open_files_in_new_window": false,
 	"rulers":
 	[

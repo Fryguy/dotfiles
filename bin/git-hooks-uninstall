@@ -1,6 +1,0 @@
-#!/bin/bash
-
-echo "rm -rf .git/hooks"
-rm -rf .git/hooks
-echo "mv .git/hooks{.original,}"
-mv .git/hooks{.original,}

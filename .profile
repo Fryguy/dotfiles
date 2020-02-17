@@ -28,10 +28,6 @@ export PATH=$PATH:/opt/bfg
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-# Ruby
-export RUBY_GC_HEAP_GROWTH_MAX_SLOTS=300000
-export RUBY_GC_HEAP_INIT_SLOTS=600000
-export RUBY_GC_HEAP_GROWTH_FACTOR=1.25
 
 # GitHub
 export GITHUB_GEM_API_TOKEN=

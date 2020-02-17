@@ -51,6 +51,15 @@ export BAT_THEME="Twilight (Fryguy)"
 export BUNDLER_EDITOR=/Users/jfrey/bin/subl
 alias be="bundle exec"
 
+# Silver Searcher
+alias ag='ag --skip-vcs-ignores --no-group --depth 999 --path-to-ignore ~/.gitignore_global'
+
+# Tree
+alias tree='tree -I bower_components -I node_modules'
+
+# dusk
+dusk(){ du -skx .[a-z]* * | sort -nr | head ${1--30}}
+
 # Memcache
 # full memcache client: http://www.commandlinefu.com/commands/view/8662/full-memcache-client-in-under-255-chars-uses-dd-sed-and-nc
 memcache_client(){ if [ "$1" = "--help" ]; then echo -e "usage: memcache_client memcache-command [arguments]\nwhere memcache-command might be:\nset\nadd\nget[s] <key>*\nappend\nprepend\nreplace\ndelete\nincr\ndecr\ncas\nstats\nverbosity\nversion\nnotes:\n  exptime argument is set to 0 (no expire)\n  flags argument is set to 1 (arbitrary)"; else { case $1 in st*|[vgid]*) printf "%s " "$@";; *) dd if=$3 2>&1|sed '$!d;/^0/d;s/ .*//;s/^/'"$1"' '"$2"' 1 0 /; r '"$3"'' 2>/dev/null;;esac;printf "\r\nquit\r\n";}|nc -n 127.0.0.1 11211; fi }

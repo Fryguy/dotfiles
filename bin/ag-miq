@@ -1,0 +1,15 @@
+#!/bin/bash
+
+ag --ignore-dir manageiq-release \
+  --ignore-dir manageiq_docs \
+  --ignore-dir openshift-docs \
+  --ignore-dir 'manageiq/public/packs' \
+  --ignore-dir 'log' \
+  --ignore-dir 'logs' \
+  --ignore-dir 'repos' \
+  --ignore-dir 'vcr_cassettes' \
+  --ignore 'Gemfile.lock' \
+  --ignore 'manageiq-ui-service.json' \
+  "$@" \
+  ~/dev/search \
+  | grep -v "\.\(js\|js\.map\|log\|po\|pot\):"

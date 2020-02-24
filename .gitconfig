@@ -39,5 +39,12 @@
 	follow = true
 [commit]
 	gpgsign = true
+	template = /Users/jfrey/.stCommitMsg
 [branch]
 	sort = -committerdate
+[difftool "sourcetree"]
+	cmd = " "
+	path = 
+[mergetool "sourcetree"]
+	cmd = " "
+	trustExitCode = true

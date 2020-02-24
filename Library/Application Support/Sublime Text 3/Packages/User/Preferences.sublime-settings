@@ -25,7 +25,7 @@
 		"rearch",
 		"rearchitecture",
 		"reimplement",
-		"systemd",
+		"systemd"
 	],
 	"auto_complete": false,
 	"auto_complete_commit_on_tab": true,

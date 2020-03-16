@@ -21,6 +21,11 @@ export PATH=$PATH:/Users/jfrey/projects/external/DanielVartanov/willgit/bin
 # GPG
 export GPG_TTY=$(tty)
 
+# PostgreSQL
+export PATH=/usr/local/opt/postgresql@10/bin:$PATH
+export LDFLAGS=-L/usr/local/opt/postgresql@10/lib:$LDFLAGS
+export CPPFLAGS=-I/usr/local/opt/postgresql@10/include:$CPPFLAGS
+
 # BFG Repo Cleaner: http://rtyley.github.io/bfg-repo-cleaner/
 export PATH=$PATH:/opt/bfg
 

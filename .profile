@@ -71,6 +71,8 @@ memcache_client(){ if [ "$1" = "--help" ]; then echo -e "usage: memcache_client 
 
 # ManageIQ
 alias vmdb="[ -f ~/dev/manageiq/vmdb/Gemfile ] && cd ~/dev/manageiq/vmdb || cd ~/dev/manageiq"
+#   to compile rugged with SSH support
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig
 
 # Tokens
 source /Users/jfrey/.profile_tokens

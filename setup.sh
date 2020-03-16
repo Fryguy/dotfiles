@@ -20,4 +20,4 @@ do
 done
 
 mkdir -p ~/Library/Preferences/bat/themes
-ln -sfh "$DIR/Library/Application Support/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "~/Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
+ln -sfh "$DIR/Library/Application Support/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" ~/"Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"

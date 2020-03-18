@@ -1,29 +1,37 @@
 #!/bin/bash
 set -e
 
-# This has to be run from master
-git checkout master
-git pull upstream master
+RELATIVE_TO=${RELATIVE_TO:-upstream/master}
 
-# Update the remote and remove any branches that no longer exist
-git fetch --all --prune 2>/dev/null
+# Update the remotes and remove any branches that no longer exist
+git fetch --all --prune 2>/dev/null || true
 
-# Remove local fully merged branches
-echo
-echo "The following local branches are fully merged and will be removed:"
-git branch --merged master | { grep -v 'master$' || true; }
+# Remove local fully merged branches, except master and the current branch
+BRANCH_LIST=($(git branch --merged $RELATIVE_TO | { grep -v '\smaster$' || true; } | { grep -v '^*' || true; } | sort))
+if [ ${#BRANCH_LIST[@]} -gt 0 ]; then
+  echo
+  echo "The following local branches are fully merged and will be removed:"
+  printf '  %s\n' "${BRANCH_LIST[@]}"
 
-read -p "Continue (y/N)? "
-if [ "$REPLY" == "y" ]; then
-  git branch --merged master | grep -v 'master$' | xargs git branch -d
+  read -p "Remove (y/N)? "
+  if [ "$REPLY" == "y" ]; then
+    printf '%s\0' "${BRANCH_LIST[@]}" | xargs -0 git branch -D
+  fi
+else
+  echo "There are no local branches to be removed."
 fi
 
-# Remove remote fully merged branches
-echo
-echo "The following remote branches are fully merged and will be removed:"
-git branch -r --merged master | grep 'origin/' | sed 's/origin\///' | { grep -v 'master$' || true; }
+# Remove remote fully merged branches, except master
+BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep 'origin/' | sed 's/origin\///' | { grep -v '\smaster$' || true; } | sort))
+if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
+  echo
+  echo "The following remote branches are fully merged and will be removed:"
+  printf '  %s\n' "${BRANCH_LIST[@]}"
 
-read -p "Continue (y/N)? "
-if [ "$REPLY" == "y" ]; then
-  git branch -r --merged master | grep 'origin/' | sed 's/origin\///' | grep -v 'master$' | xargs -I% git push origin :%
+  read -p "Remove (y/N)? "
+  if [ "$REPLY" == "y" ]; then
+    printf '%s\0' "${BRANCH_LIST[@]}" | xargs -0 git push origin --delete
+  fi
+else
+  echo "There no remote branches to be removed."
 fi

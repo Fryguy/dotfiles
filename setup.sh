@@ -12,6 +12,7 @@ for target in \
 	.pryrc \
 	.ruby_tools.rb \
 	bin \
+	.bundler.d/Gemfile.global.rb \
 	"Library/KeyBindings/DefaultKeyBinding.dict"
 do
 	link_dir="$(dirname ~/"$target")"

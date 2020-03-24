@@ -1,0 +1,5 @@
+ensure_gem "pry"
+ensure_gem "pry-byebug"
+ensure_gem "pry-doc"
+ensure_gem "pry-rails"
+ensure_gem "pry-theme"

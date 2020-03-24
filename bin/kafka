@@ -1,0 +1,20 @@
+#!/bin/bash
+
+VALID_COMMANDS=($(ls /usr/local/bin/kafka-* | sed -E s/^.+kafka-//))
+
+command=$1
+if [[ " ${VALID_COMMANDS[@]} " != *" $command "* ]]; then
+	if [ "$command" != "--help" ]; then
+		echo "Error: '$command' is an invalid command."
+		echo
+	fi
+	echo "Usage: $(basename "$0") <command> [options]"
+	echo
+	echo "Commands:"
+	printf '  %s\n' "${VALID_COMMANDS[@]}"
+	exit 1
+fi
+shift
+
+BOOTSTRAP_SERVER=${BOOTSTRAP_SERVER:-localhost:9092}
+kafka-$command --bootstrap-server=$BOOTSTRAP_SERVER "$@"

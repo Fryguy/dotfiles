@@ -1,0 +1,14 @@
+{
+	"extensions":
+	[
+		"bash",
+		"sh",
+		"zlogin",
+		"zlogout",
+		"zpreztorc",
+		"zprofile",
+		"zsh",
+		"zshenv",
+		"zshrc"
+	]
+}

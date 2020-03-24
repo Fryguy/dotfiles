@@ -1,0 +1,13 @@
+{
+	"extensions":
+	[
+		".gemrc",
+		".rubocop-https---raw-githubusercontent-com-ManageIQ-guides-master--rubocop-yml",
+		"metadata",
+		"YAML-tmLanguage",
+		"yml",
+		"yml.dist"
+	],
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true
+}

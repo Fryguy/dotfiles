@@ -1,0 +1,10 @@
+[
+	// TrailingSpaces
+	{ "keys": ["ctrl+shift+t"], "command": "delete_trailing_spaces" },
+
+	// Alignment
+	{ "keys": ["super+ctrl+shift+a"], "command": "alignment" },
+
+	// HexViewer
+	{ "keys": ["super+shift+h"], "command": "hex_viewer" }
+]

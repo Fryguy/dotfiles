@@ -1,0 +1,19 @@
+{
+	"extensions":
+	[
+		".irbrc",
+		".pryrc",
+		"Appraisals",
+		"jbuilder",
+		"podspec",
+		"rabl",
+		"rake",
+		"rb",
+		"rl",
+		"ru",
+		"simplecov",
+		"thor"
+	],
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true
+}

@@ -70,11 +70,6 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"BracketHighlighter",
-		"GitGutter",
-		"LineEndings",
-		"ScopeHunter",
-		"TabNine",
 		"Vintage"
 	],
 	"line_padding_bottom": 1.0,

@@ -1,0 +1,12 @@
+[
+	{
+		"class": "tab_label",
+		"settings": ["highlight_modified_tabs"],
+		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+		"fg": [255, 161, 52]
+	},
+	{
+		"class": "sidebar_label",
+		"font.size": 12
+	}
+]

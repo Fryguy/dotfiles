@@ -3,17 +3,19 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 for target in \
+	.bundler.d/Gemfile.global.rb \
 	.gemrc \
 	.gitattributes \
 	.gitconfig \
 	.gitignore_global \
+	.gnupg/gpg-agent.conf \
+	.gnupg/gpg.conf \
 	.irbrc \
 	.profile \
 	.pryrc \
 	.ruby_tools.rb \
 	bin \
-	.bundler.d/Gemfile.global.rb \
-	"Library/KeyBindings/DefaultKeyBinding.dict"
+	Library/KeyBindings/DefaultKeyBinding.dict
 do
 	link_dir="$(dirname ~/"$target")"
 	[ ! -d "$link_dir" ] && echo "Creating $link_dir" && mkdir -p "$link_dir"

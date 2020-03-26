@@ -27,6 +27,8 @@
 	lineNumber = true
 [diff]
 	algorithm = patience
+[diff "gpg"]
+	textconv = gpg --no-tty --decrypt --quiet
 [rebase]
 	autosquash = true
 [help]

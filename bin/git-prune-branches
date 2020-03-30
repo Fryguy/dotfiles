@@ -22,7 +22,7 @@ else
 fi
 
 # Remove remote fully merged branches, except master
-BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep 'origin/' | sed 's/origin\///' | { grep -v '\smaster$' || true; } | sort))
+BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep 'origin/' | { grep -v 'HEAD ->' || true; } | sed 's/origin\///' | { grep -v '\smaster$' || true; } | sort))
 if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
   echo
   echo "The following remote branches are fully merged and will be removed:"

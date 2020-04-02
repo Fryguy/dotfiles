@@ -1,2 +1,5 @@
 #!/bin/bash
-git fetch upstream pull/$1/head:pull_request_$1
+git fetch --force --update-head-ok upstream pull/$1/head:pull_request_$1
+if [ "$(git rev-parse --abbrev-ref HEAD)" == "pull_request_$1" ]; then
+	git reset --hard
+fi

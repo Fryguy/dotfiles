@@ -33,5 +33,5 @@ if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
     printf '%s\0' "${BRANCH_LIST[@]}" | xargs -0 git push origin --delete
   fi
 else
-  echo "There no remote branches to be removed."
+  echo "There are no remote branches to be removed."
 fi

@@ -1,3 +1,7 @@
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  IS_MAC=true
+fi
+
 # Shell
 export PATH=~/bin:$PATH
 

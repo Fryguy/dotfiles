@@ -7,7 +7,11 @@ export PATH=~/bin:$PATH
 
 # Git
 #   Prompt
-source /usr/local/etc/bash_completion.d/git-prompt.sh
+if [ "$IS_MAC" == "true" ]; then
+  source /usr/local/etc/bash_completion.d/git-prompt.sh
+else
+  source /etc/bash_completion.d/git-prompt
+fi
 GIT_PS1_SHOWDIRTYSTATE=true
 # GIT_PS1_SHOWUNTRACKEDFILES=true
 # GIT_PS1_SHOWSTASHSTATE=true
@@ -50,8 +54,10 @@ source "/usr/local/opt/nvm/nvm.sh"
 # LLVM
 export LLVM_CONFIG=/usr/local/opt/llvm@8/bin/llvm-config
 
-# Homebrew
-export HOMEBREW_SRC=/usr/local/Library/Homebrew
+if [ "$IS_MAC" == "true" ]; then
+  # Homebrew
+  export HOMEBREW_SRC=/usr/local/Library/Homebrew
+fi
 
 # Bat
 export BAT_THEME="Twilight (Fryguy)"

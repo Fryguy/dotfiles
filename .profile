@@ -14,9 +14,9 @@ _git_stash_index () { _git_stash "$@"; }
 _git_stash_without_index () { _git_stash "$@"; }
 _git_lg () { _git_log "$@"; }
 #   Third Party git extensions
-export PATH=$PATH:/Users/jfrey/projects/external/git-aliae/bin
-export PATH=$PATH:/Users/jfrey/projects/external/git-aliae/wip
-export PATH=$PATH:/Users/jfrey/projects/external/DanielVartanov/willgit/bin
+export PATH=$PATH:$HOME/projects/external/git-aliae/bin
+export PATH=$PATH:$HOME/projects/external/git-aliae/wip
+export PATH=$PATH:$HOME/projects/external/DanielVartanov/willgit/bin
 
 # GPG
 export GPG_TTY=$(tty)
@@ -34,10 +34,10 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # Minishift
-export PATH=$PATH:/Users/jfrey/.minishift/cache/oc/v3.6.0
+export PATH=$PATH:$HOME/.minishift/cache/oc/v3.6.0
 
 # Python
-export PATH=$PATH:/Users/jfrey/Library/Python/3.7/bin
+export PATH=$PATH:$HOME/Library/Python/3.7/bin
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -53,7 +53,7 @@ export HOMEBREW_SRC=/usr/local/Library/Homebrew
 export BAT_THEME="Twilight (Fryguy)"
 
 # Bundler
-export BUNDLER_EDITOR=/Users/jfrey/bin/subl
+export BUNDLER_EDITOR=$HOME/bin/subl
 alias be="bundle exec"
 
 # Silver Searcher
@@ -77,4 +77,4 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig
 alias miq-pass='PASSWORD_STORE_DIR=$HOME/dev/admin/secrets pass'
 
 # Tokens
-source /Users/jfrey/.profile_tokens
+source $HOME/.profile_tokens

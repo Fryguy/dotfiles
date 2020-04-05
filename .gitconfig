@@ -6,9 +6,9 @@
 	ui = auto
 	diff = auto
 [core]
-	excludesfile = /Users/jfrey/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = less -FX
-	attributesfile = /Users/jfrey/.gitattributes
+	attributesfile = ~/.gitattributes
 [merge]
 	renamelimit = 99999
 [github]
@@ -41,7 +41,7 @@
 	follow = true
 [commit]
 	gpgsign = true
-	template = /Users/jfrey/.stCommitMsg
+	template = ~/.stCommitMsg
 [branch]
 	sort = -committerdate
 [difftool "sourcetree"]

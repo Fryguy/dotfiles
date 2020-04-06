@@ -9,14 +9,20 @@ fi
 function link_file() {
 	file="$1"
 	target="$2"
+	copy="$3"
 
 	link_dir=$(dirname "$target")
 	[ ! -d "$link_dir" ] && echo "Creating $link_dir" && mkdir -p "$link_dir"
 
-	echo "Linking $target -> $file"
-	ln -sf "$file" "$target"
+	if [ "$copy" == "true" ]; then
+		echo "Copying $file -> $target"
+		rm -f "$target"
+		cp "$file" "$target"
+	else
+		echo "Linking $target -> $file"
+		ln -snf "$file" "$target"
+	fi
 }
-
 
 for target in \
 	.bundler.d/Gemfile.global.rb \
@@ -45,9 +51,11 @@ fi
 IFS=$'\n' files=($(ls "Sublime Text 3/Packages/User"))
 for target in ${files[@]}; do
 	if [ "$IS_MAC" == "true" ]; then
-		target_dir=~/"Library/Application Support"
+		copy=false
+		target_dir=~"/Library/Application Support"
 	else
+		copy=true
 		target_dir="/mnt/c/Users/Fryguy/AppData/Roaming"
 	fi
-	link_file "$DIR/Sublime Text 3/Packages/User/$target" "$target_dir/Sublime Text 3/Packages/User/$target"
+	link_file "$DIR/Sublime Text 3/Packages/User/$target" "$target_dir/Sublime Text 3/Packages/User/$target" "$copy"
 done

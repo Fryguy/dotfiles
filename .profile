@@ -49,7 +49,7 @@ export PATH=$PATH:$HOME/Library/Python/3.7/bin
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-source "/usr/local/opt/nvm/nvm.sh"
+[ -e "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"
 
 # LLVM
 export LLVM_CONFIG=/usr/local/opt/llvm@8/bin/llvm-config

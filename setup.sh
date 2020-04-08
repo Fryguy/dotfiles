@@ -4,6 +4,8 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	IS_MAC=true
+else
+	USERPROFILE="/mnt/c/Users/Fryguy"
 fi
 
 function link_file() {
@@ -55,7 +57,7 @@ for target in ${files[@]}; do
 		target_dir="$HOME/Library/Application Support"
 	else
 		copy=true
-		target_dir="/mnt/c/Users/Fryguy/AppData/Roaming"
+		target_dir="$USERPROFILE/AppData/Roaming"
 	fi
 	link_file "$DIR/Sublime Text 3/Packages/User/$target" "$target_dir/Sublime Text 3/Packages/User/$target" "$copy"
 done

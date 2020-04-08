@@ -38,6 +38,7 @@ for target in \
 	.profile \
 	.pryrc \
 	.ruby_tools.rb \
+	.vim/colors/twilight-fryguy.vim \
 	.vimrc \
 	bin
 do

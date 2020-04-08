@@ -10,5 +10,5 @@ Plug 'tpope/vim-sensible'
 Plug 'jamessan/vim-gnupg'
 call plug#end()
 
-" color twilight
+color twilight-fryguy
 

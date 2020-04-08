@@ -38,21 +38,21 @@ for target in \
 	.ruby_tools.rb \
 	bin
 do
-	link_file "$DIR/$target" ~/"$target"
+	link_file "$DIR/$target" "$HOME/$target"
 done
 
 if [ "$IS_MAC" == "true" ]; then
 	target="Library/KeyBindings/DefaultKeyBinding.dict"
-	link_file "$DIR/$target" ~/"$target"
+	link_file "$DIR/$target" "$HOME/$target"
 
-	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" ~/"Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
+	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
 fi
 
 IFS=$'\n' files=($(ls "Sublime Text 3/Packages/User"))
 for target in ${files[@]}; do
 	if [ "$IS_MAC" == "true" ]; then
 		copy=false
-		target_dir=~"/Library/Application Support"
+		target_dir="$HOME/Library/Application Support"
 	else
 		copy=true
 		target_dir="/mnt/c/Users/Fryguy/AppData/Roaming"

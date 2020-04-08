@@ -34,6 +34,12 @@ export PATH=$PATH:$HOME/projects/external/DanielVartanov/willgit/bin
 # GPG
 export GPG_TTY=$(tty)
 
+# SSH
+if [ "$IS_MAC" != "true" ]; then
+	keychain --nogui --quiet $(ls -p $HOME/.ssh | grep -v "config\|known_hosts\|\.pub")
+	source $HOME/.keychain/$HOST-sh
+fi
+
 # PostgreSQL
 export PATH=/usr/local/opt/postgresql@10/bin:$PATH
 export LDFLAGS=-L/usr/local/opt/postgresql@10/lib:$LDFLAGS

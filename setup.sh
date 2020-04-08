@@ -38,6 +38,7 @@ for target in \
 	.profile \
 	.pryrc \
 	.ruby_tools.rb \
+	.vimrc \
 	bin
 do
 	link_file "$DIR/$target" "$HOME/$target"

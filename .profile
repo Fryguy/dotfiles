@@ -5,6 +5,11 @@ fi
 # Shell
 export PATH=~/bin:$PATH
 
+# WSL
+if [ "$IS_MAC" != "true" ]; then
+	export USERPROFILE="/mnt/c/Users/Fryguy"
+fi
+
 # Git
 #   Prompt
 if [ "$IS_MAC" == "true" ]; then

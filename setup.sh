@@ -32,7 +32,6 @@ for target in \
 	.gitattributes \
 	.gitconfig \
 	.gitignore_global \
-	.gnupg/gpg-agent.conf \
 	.gnupg/gpg.conf \
 	.irbrc \
 	.profile \
@@ -48,8 +47,13 @@ done
 if [ "$IS_MAC" == "true" ]; then
 	target="Library/KeyBindings/DefaultKeyBinding.dict"
 	link_file "$DIR/$target" "$HOME/$target"
+	target=".gnupg/gpg-agent.conf"
+	link_file "$DIR/$target-mac" "$HOME/$target"
 
 	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
+else
+	target=".gnupg/gpg-agent.conf"
+	link_file "$DIR/$target-linux" "$HOME/$target"
 fi
 
 IFS=$'\n' files=($(ls "Sublime Text 3/Packages/User"))

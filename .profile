@@ -8,6 +8,10 @@ export PATH=~/bin:$PATH
 # WSL
 if [ "$IS_MAC" != "true" ]; then
 	export USERPROFILE="/mnt/c/Users/Fryguy"
+
+	# WSL inserts a lot of unneeded paths, like /mnt/c/Windows, that
+	#   cause zsh completion to be extremely slow, so remove them.
+	export PATH=$(echo $PATH | tr ':' '\n' | grep -v "/mnt/c/" | tr '\n' ':')
 fi
 
 # Git

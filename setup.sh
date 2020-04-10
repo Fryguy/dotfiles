@@ -54,6 +54,8 @@ if [ "$IS_MAC" == "true" ]; then
 else
 	target=".gnupg/gpg-agent.conf"
 	link_file "$DIR/$target-linux" "$HOME/$target"
+
+	link_file "/mnt/c/Program Files/Sublime Text 3/subl.exe" "$HOME/bin/subl"
 fi
 
 IFS=$'\n' files=($(ls "Sublime Text 3/Packages/User"))

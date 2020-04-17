@@ -44,17 +44,23 @@ do
 	link_file "$DIR/$target" "$HOME/$target"
 done
 
+for target in \
+	.gnupg/gpg-agent.conf \
+	.gitconfig_platform
+do
+	if [ "$IS_MAC" == "true" ]; then
+		link_file "$DIR/$target-mac" "$HOME/$target"
+	else
+		link_file "$DIR/$target-linux" "$HOME/$target"
+	fi
+done
+
 if [ "$IS_MAC" == "true" ]; then
 	target="Library/KeyBindings/DefaultKeyBinding.dict"
 	link_file "$DIR/$target" "$HOME/$target"
-	target=".gnupg/gpg-agent.conf"
-	link_file "$DIR/$target-mac" "$HOME/$target"
 
 	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
 else
-	target=".gnupg/gpg-agent.conf"
-	link_file "$DIR/$target-linux" "$HOME/$target"
-
 	link_file "/mnt/c/Program Files/Sublime Text 3/subl.exe" "$HOME/bin/subl"
 fi
 

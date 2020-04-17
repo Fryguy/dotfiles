@@ -11,9 +11,6 @@
 	attributesfile = ~/.gitattributes
 [merge]
 	renamelimit = 99999
-[github]
-	user = Fryguy
-	token = 
 [credential]
 	helper = osxkeychain
 [pull]
@@ -44,6 +41,8 @@
 	template = ~/.stCommitMsg
 [branch]
 	sort = -committerdate
+[include]
+	path = ~/.gitconfig_tokens
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

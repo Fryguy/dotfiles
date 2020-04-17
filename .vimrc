@@ -7,8 +7,11 @@ endif
 
 call plug#begin()
 Plug 'tpope/vim-sensible'
+Plug 'airblade/vim-gitgutter'
 Plug 'jamessan/vim-gnupg'
 call plug#end()
 
 color twilight-fryguy
-
+set number
+set updatetime=250
+let g:gitgutter_sign_column_always=1

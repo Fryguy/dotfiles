@@ -39,6 +39,8 @@
 	template = ~/.stCommitMsg
 [branch]
 	sort = -committerdate
+[advice]
+	detachedHead = false
 [include]
 	path = ~/.gitconfig_platform
 	path = ~/.gitconfig_tokens

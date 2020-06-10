@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "Success!" | gpg --output - --sign /dev/fd/0 | gpg --decrypt - 2>/dev/null

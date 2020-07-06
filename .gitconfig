@@ -11,6 +11,8 @@
 	attributesfile = ~/.gitattributes
 [merge]
 	renamelimit = 99999
+[fetch]
+	prune = true
 [pull]
 	rebase = true
 [push]

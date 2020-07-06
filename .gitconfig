@@ -31,7 +31,7 @@
 [rerere]
 	enabled = 1
 [alias]
-	lg = log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset\"
+	lg = log --graph --pretty=format:\"%C(auto)%h -%d %s %C(green)(%cr) %C(cyan)<%an>%C(reset)\"
 	mr = !sh -c 'git fetch --force --update-head-ok ${2:-upstream} merge-requests/$1/head:mr-$1 && git checkout mr-$1' -
 	pr = !sh -c 'git fetch --force --update-head-ok ${2:-upstream} pull/$1/head:pr-$1 && git checkout pr-$1' -
 [log]

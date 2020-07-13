@@ -2,6 +2,7 @@
 set -e
 
 RELATIVE_TO=${RELATIVE_TO:-upstream/master}
+GIT_ORIGIN=${GIT_ORIGIN:-origin}
 
 # Update the remotes and remove any branches that no longer exist
 git fetch --all --prune 2>/dev/null || true
@@ -22,7 +23,7 @@ else
 fi
 
 # Remove remote fully merged branches, except master
-BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep 'origin/' | { grep -v 'HEAD ->' || true; } | sed 's/origin\///' | { grep -v '\smaster$' || true; } | sort))
+BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep '$GIT_ORIGIN/' | { grep -v 'HEAD ->' || true; } | sed 's/$GIT_ORIGIN\///' | { grep -v '\smaster$' || true; } | sort))
 if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
   echo
   echo "The following remote branches are fully merged and will be removed:"
@@ -30,7 +31,7 @@ if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
 
   read -p "Remove (y/N)? "
   if [ "$REPLY" == "y" ]; then
-    printf '%s\0' "${BRANCH_LIST[@]}" | xargs -0 git push origin --delete
+    printf '%s\0' "${BRANCH_LIST[@]}" | xargs -0 git push $GIT_ORIGIN --delete
   fi
 else
   echo "There are no remote branches to be removed."

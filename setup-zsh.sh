@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SOURCE_REPO=${SOURCE_REPO:-Fryguy/prezto}
 
 git clone --recursive git@github.com:SOURCE_REPO "${ZDOTDIR:-$HOME}/.zprezto"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 SOURCE_REPO=${SOURCE_REPO:-Fryguy/dotfiles}
 
 mkdir ~/projects

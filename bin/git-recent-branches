@@ -9,7 +9,7 @@ git reflog -n100 --pretty='%cr|%gs' --grep-reflog='checkout: moving' HEAD | {
     branch="${line##* }"
     if ! [[ $seen == *:"${branch}":* ]]; then
       seen="${seen}${branch}:"
-      if [ -f "${git_dir}/refs/heads/${branch}" ]; then
+      if git show-ref --verify --quiet refs/heads/${branch}; then
         printf "%s\t%s\n" "$date" "$branch"
       fi
     fi

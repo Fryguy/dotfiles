@@ -36,6 +36,7 @@
 	lg = log --graph --pretty=format:\"%C(auto)%h -%d %s %C(green)(%cr) %C(cyan)<%an>%C(reset)\"
 	mr = "!f(){ git fetch --force --update-head-ok ${2:-upstream} merge-requests/$1/head:mr-$1 && git checkout mr-$1; };f"
 	pr = "!f(){ git fetch --force --update-head-ok ${2:-upstream} pull/$1/head:pr-$1 && git checkout pr-$1; };f"
+	squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 	block-push = "!git remote set-url --push ${1:upstream} \"\""
 	restore-push = "!git remote set-url --push ${1:upstream} $(git remote get-url ${1:upstream})"
 	# via https://stackoverflow.com/a/30998048/2355944

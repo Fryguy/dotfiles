@@ -34,8 +34,8 @@
 	enabled = 1
 [alias]
 	lg = log --graph --pretty=format:\"%C(auto)%h -%d %s %C(green)(%cr) %C(cyan)<%an>%C(reset)\"
-	mr = !sh -c 'git fetch --force --update-head-ok ${2:-upstream} merge-requests/$1/head:mr-$1 && git checkout mr-$1' -
-	pr = !sh -c 'git fetch --force --update-head-ok ${2:-upstream} pull/$1/head:pr-$1 && git checkout pr-$1' -
+	mr = "!f(){ git fetch --force --update-head-ok ${2:-upstream} merge-requests/$1/head:mr-$1 && git checkout mr-$1; };f"
+	pr = "!f(){ git fetch --force --update-head-ok ${2:-upstream} pull/$1/head:pr-$1 && git checkout pr-$1; };f"
 [log]
 	follow = true
 [commit]

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+if [[ "$#" -ne 2 ]]; then
+  usage="Usage: $(basename $0) <image> <base-image>"
+  if [[ "$1" == "--help" ]]; then
+    echo $usage
+    exit 0
+  else
+    echo "ERROR: must pass image and base-image"
+    echo
+    echo $usage
+    exit 1
+  fi
+fi
+
+docker pull "$1"
+imageLayers=($(docker image inspect "$1" | jq -r '.[].RootFS.Layers[]'))
+echo
+docker pull "$2"
+baseLayers=($(docker image inspect "$2" | jq -r '.[].RootFS.Layers[]'))
+echo
+
+if [[ "${#baseLayers[@]}" -lt "${#imageLayers[@]}" && " $imageLayers[@] " =~ " $baseLayers[@] " ]]; then
+  echo -e "$1 \033[92mis built on\033[0m $2"
+else
+  echo -e "$1 \033[91mis not built on\033[0m $2"
+fi

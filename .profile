@@ -45,9 +45,9 @@ if [ "$IS_MAC" != "true" ]; then
 fi
 
 # PostgreSQL
-export PATH=/usr/local/opt/postgresql@10/bin:$PATH
-export LDFLAGS=-L/usr/local/opt/postgresql@10/lib:$LDFLAGS
-export CPPFLAGS=-I/usr/local/opt/postgresql@10/include:$CPPFLAGS
+export PATH=/usr/local/opt/postgresql@10/bin${PATH:+:$PATH}
+export LDFLAGS=-L/usr/local/opt/postgresql@10/lib${LDFLAGS:+:$LDFLAGS}
+export CPPFLAGS=-I/usr/local/opt/postgresql@10/include:${CPPFLAGS:+:$CPPFLAGS}
 
 # BFG Repo Cleaner: http://rtyley.github.io/bfg-repo-cleaner/
 export PATH=$PATH:/opt/bfg

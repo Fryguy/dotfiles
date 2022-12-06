@@ -200,7 +200,7 @@ module RubyTools
     def self.ems_create(*args)
       if args.empty?
         puts "You must specify args:"
-        puts "  :klass, :username, :password, :hostname, :ipaddress"
+        puts "  :klass, :username, :password, :hostname (and optionally :name, :ipaddress, :verify_ssl)"
         puts "or a registry key:"
         puts "  #{ems_registry.keys.sort.map(&:inspect).join(", ")}"
         return false
@@ -218,25 +218,26 @@ module RubyTools
     end
 
     private_class_method def self.ems_create_from_registry(name)
-      args = ems_registry.fetch(name)
+      args = ems_registry.fetch(name).symbolize_keys
+      args = {:name => name}.merge(args)
       ems_create_direct(args)
     end
 
-    private_class_method def self.ems_create_direct(klass:, username:, password:, hostname: nil, ipaddress: nil, verify_ssl: 0)
+    private_class_method def self.ems_create_direct(klass:, username:, password:, name: nil, hostname: nil, ipaddress: nil, verify_ssl: 0)
       seed
 
       klass = Object.const_get(klass) if klass.is_a?(String)
-      ems = klass.find_by(:name => hostname)
-      ems ||= begin
-        create_args = {
-          :name       => hostname,
-          :hostname   => hostname,
-          :ipaddress  => ipaddress,
-          :verify_ssl => verify_ssl,
-          :zone       => Zone.default_zone
-        }.compact
-        klass.create!(create_args)
-      end
+      name ||= hostname
+      args = {
+        :name       => name,
+        :hostname   => hostname,
+        :ipaddress  => ipaddress,
+        :verify_ssl => verify_ssl,
+        :zone       => Zone.default_zone
+      }.compact
+
+      ems = klass.create_with(args).find_or_create_by!(:name => name)
+      ems.update!(args)
       ems.update_authentication(:default => {:userid => username, :password => password})
 
       EmsRefresh.refresh(ems)

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 jq -c -R 'if endswith("...") then "\(.)\"}" else . end | fromjson? | .' | \
-  jq -c -r -M '"[----] \(.level[:1] | ascii_upcase), [\(.["@timestamp"])#\(.pid | tostring):\(.tid)]\(" " * (5 - (.level[:5] | length) + 1))\(.level[:5] | ascii_upcase) -- \(.source? | ""): \(.message)"'
+	jq -c -r -M '"[----] \(.level[:1] | ascii_upcase), [\(.["@timestamp"])#\(.pid | tostring):\(.tid)]\(" " * (5 - (.level[:5] | length) + 1))\(.level[:5] | ascii_upcase) -- \(.service? // ""): \(.message)"'

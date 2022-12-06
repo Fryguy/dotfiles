@@ -83,6 +83,17 @@ export BAT_THEME="Twilight (Fryguy)"
 export BUNDLER_EDITOR=$HOME/bin/subl
 alias be="bundle exec"
 
+# Docker
+docker() {
+  custom_docker_cmd="docker-$1"
+  if [ -x "$(which "$custom_docker_cmd")" ]; then
+    shift
+    $custom_docker_cmd "$@"
+  else
+    command docker "$@"
+  fi
+}
+
 # Silver Searcher
 alias ag='ag --skip-vcs-ignores --no-group --depth 999 --path-to-ignore ~/.gitignore_global'
 

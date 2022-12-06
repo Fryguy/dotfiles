@@ -28,6 +28,7 @@
 	textconv = gpg --no-tty --decrypt --quiet
 [rebase]
 	autosquash = true
+	updateRefs = true
 [help]
 	autocorrect = 1
 [rerere]

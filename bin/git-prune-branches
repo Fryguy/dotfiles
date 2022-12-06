@@ -2,14 +2,15 @@
 set -e
 
 RELATIVE_TO=${RELATIVE_TO:-upstream/master}
+RELATIVE_TO_EXCEPT=${RELATIVE_TO#*/}
 GIT_ORIGIN=${GIT_ORIGIN:-origin}
 
 # Update the remotes and remove any branches that no longer exist
 git fetch --prune origin 2>/dev/null || true
 git fetch --prune upstream 2>/dev/null || true
 
-# Remove local fully merged branches, except master and the current branch
-BRANCH_LIST=($(git branch --merged $RELATIVE_TO | { grep -v '\smaster$' || true; } | { grep -v '^*' || true; } | sort))
+# Remove local fully merged branches, except the main branch  and the current branch
+BRANCH_LIST=($(git branch --merged $RELATIVE_TO | { grep -v "\s$RELATIVE_TO_EXCEPT\$" || true; } | { grep -v '^*' || true; } | sort))
 if [ ${#BRANCH_LIST[@]} -gt 0 ]; then
   echo
   echo "The following local branches are fully merged and will be removed:"
@@ -23,8 +24,8 @@ else
   echo "There are no local branches to be removed."
 fi
 
-# Remove remote fully merged branches, except master
-BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep "$GIT_ORIGIN/" | { grep -v 'HEAD ->' || true; } | sed "s/$GIT_ORIGIN\///" | { grep -v '\smaster$' || true; } | sort))
+# Remove remote fully merged branches, except the main branch
+BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep "$GIT_ORIGIN/" | { grep -v 'HEAD ->' || true; } | sed "s/$GIT_ORIGIN\///" | { grep -v "\s$RELATIVE_TO_EXCEPT\$" || true; } | sort))
 if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
   echo
   echo "The following remote branches are fully merged and will be removed:"

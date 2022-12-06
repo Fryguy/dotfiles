@@ -59,6 +59,9 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 # Python
 export PATH=$PATH:$HOME/Library/Python/3.7/bin
 
+# Go
+export PATH=$PATH:$HOME/go/bin
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -e "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"

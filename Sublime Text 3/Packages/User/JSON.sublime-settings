@@ -1,13 +1,15 @@
 {
 	"extensions":
 	[
+		".stylelintrc",
 		".bowerrc",
+		"sublime-workspace",
+		".babelrc",
+		".whitesource",
 		".csslintrc",
 		".eslintrc",
-		".jscsrc",
 		".jshintrc",
 		"geojson",
-		"sublime-workspace",
-		".whitesource",
+		".jscsrc",
 	],
 }

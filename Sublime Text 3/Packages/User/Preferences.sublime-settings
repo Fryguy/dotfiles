@@ -152,5 +152,6 @@
 	"show_full_path": true,
 	"soda_classic_tabs": true,
 	"theme": "Soda Dark 3.sublime-theme",
+	"update_check": true,
 	"word_wrap": false,
 }

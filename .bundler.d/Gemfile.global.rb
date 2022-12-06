@@ -1,4 +1,4 @@
-ensure_gem "pry"
+ensure_gem "pry", "~> 0.13.x", "< 0.14"
 ensure_gem "pry-byebug"
 ensure_gem "pry-doc"
 ensure_gem "pry-rails"

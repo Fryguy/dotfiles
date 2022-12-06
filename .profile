@@ -56,9 +56,6 @@ export PATH=$PATH:/opt/bfg
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-# Minishift
-export PATH=$PATH:$HOME/.minishift/cache/oc/v3.6.0
-
 # Python
 export PATH=$PATH:$HOME/Library/Python/3.7/bin
 

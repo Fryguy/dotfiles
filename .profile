@@ -72,6 +72,8 @@ export LLVM_CONFIG=/usr/local/opt/llvm@8/bin/llvm-config
 if [ "$IS_MAC" == "true" ]; then
   # Homebrew
   export HOMEBREW_SRC=/usr/local/Library/Homebrew
+  export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
+  export HOMEBREW_NO_INSTALL_CLEANUP=1
 fi
 
 # Bat

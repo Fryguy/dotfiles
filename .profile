@@ -7,11 +7,11 @@ export PATH=~/bin:$PATH
 
 # WSL
 if [ "$IS_MAC" != "true" ]; then
-	export USERPROFILE="/mnt/c/Users/Fryguy"
+  export USERPROFILE="/mnt/c/Users/Fryguy"
 
-	# WSL inserts a lot of unneeded paths, like /mnt/c/Windows, that
-	#   cause zsh completion to be extremely slow, so remove them.
-	export PATH=$(echo $PATH | tr ':' '\n' | grep -v "/mnt/c/" | tr '\n' ':')
+  # WSL inserts a lot of unneeded paths, like /mnt/c/Windows, that
+  #   cause zsh completion to be extremely slow, so remove them.
+  export PATH=$(echo $PATH | tr ':' '\n' | grep -v "/mnt/c/" | tr '\n' ':')
 fi
 
 # Git
@@ -40,8 +40,8 @@ export GPG_TTY=$(tty)
 
 # SSH
 if [ "$IS_MAC" != "true" ]; then
-	keychain --nogui --quiet $(ls -p $HOME/.ssh | grep -v "config\|known_hosts\|\.pub")
-	source $HOME/.keychain/$HOST-sh
+  keychain --nogui --quiet $(ls -p $HOME/.ssh | grep -v "config\|known_hosts\|\.pub")
+  source $HOME/.keychain/$HOST-sh
 fi
 
 # PostgreSQL

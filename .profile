@@ -1,5 +1,15 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
   IS_MAC=true
+
+  if [ -d /opt/homebrew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    eval "$(brew shellenv)"
+  fi
+
+  PACKAGE_PREFIX=$HOMEBREW_PREFIX
+else
+  PACKAGE_PREFIX=/usr/local
 fi
 
 # Shell
@@ -17,7 +27,7 @@ fi
 # Git
 #   Prompt
 if [ "$IS_MAC" == "true" ]; then
-  source /usr/local/etc/bash_completion.d/git-prompt.sh
+  source $PACKAGE_PREFIX/etc/bash_completion.d/git-prompt.sh
 else
   source /etc/bash_completion.d/git-prompt
 fi
@@ -45,15 +55,15 @@ if [ "$IS_MAC" != "true" ]; then
 fi
 
 # PostgreSQL
-export PATH=/usr/local/opt/postgresql@13/bin${PATH:+:$PATH}
-export LDFLAGS=-L/usr/local/opt/postgresql@13/lib${LDFLAGS:+:$LDFLAGS}
-export CPPFLAGS=-I/usr/local/opt/postgresql@13/include:${CPPFLAGS:+:$CPPFLAGS}
+export PATH=$PACKAGE_PREFIX/opt/postgresql@13/bin${PATH:+:$PATH}
+export LDFLAGS=-L$PACKAGE_PREFIX/opt/postgresql@13/lib${LDFLAGS:+:$LDFLAGS}
+export CPPFLAGS=-I$PACKAGE_PREFIX/opt/postgresql@13/include:${CPPFLAGS:+:$CPPFLAGS}
 
 # BFG Repo Cleaner: http://rtyley.github.io/bfg-repo-cleaner/
 export PATH=$PATH:/opt/bfg
 
 # Android
-export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_HOME=$PACKAGE_PATH/opt/android-sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # Python
@@ -64,14 +74,14 @@ export PATH=$PATH:$HOME/go/bin
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -e "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"
+[ -e "$PACKAGE_PREFIX/opt/nvm/nvm.sh" ] && source "$PACKAGE_PREFIX/opt/nvm/nvm.sh"
 
 # LLVM
-export LLVM_CONFIG=/usr/local/opt/llvm@8/bin/llvm-config
+export LLVM_CONFIG=$PACKAGE_PREFIX/opt/llvm@8/bin/llvm-config
 
 if [ "$IS_MAC" == "true" ]; then
   # Homebrew
-  export HOMEBREW_SRC=/usr/local/Library/Homebrew
+  export HOMEBREW_SRC=$PACKAGE_PATH/Library/Homebrew
   export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
   export HOMEBREW_NO_INSTALL_CLEANUP=1
 fi
@@ -110,7 +120,7 @@ memcache_client(){ if [ "$1" = "--help" ]; then echo -e "usage: memcache_client 
 # ManageIQ
 alias vmdb="[ -f ~/dev/manageiq/vmdb/Gemfile ] && cd ~/dev/manageiq/vmdb || cd ~/dev/manageiq"
 #   to compile rugged with SSH support
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PACKAGE_PREFIX/opt/openssl/lib/pkgconfig
 #   secrets store
 alias miq-pass='PASSWORD_STORE_DIR=$HOME/dev/private/secrets pass'
 

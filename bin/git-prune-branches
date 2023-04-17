@@ -1,16 +1,35 @@
 #!/bin/bash
+
+# The remote name of your fork
+GIT_ORIGIN=${GIT_ORIGIN:-origin}
+# The remote name of the upstream
+GIT_UPSTREAM=${GIT_UPSTREAM:-upstream}
+
+UPSTREAM_HEAD=${UPSTREAM_HEAD:-$(git rev-parse --abbrev-ref --verify -q $GIT_UPSTREAM/HEAD)}
+if [ "$UPSTREAM_HEAD" == "" ]; then
+  # Try to auto-detect the upstream HEAD
+  git remote set-head $GIT_UPSTREAM --auto
+  UPSTREAM_HEAD="$(git rev-parse --abbrev-ref --verify -q $GIT_UPSTREAM/HEAD)"
+  if [ "$UPSTREAM_HEAD" == "" ]; then
+    echo "ERROR: Unable to determine the upstream HEAD. Expected it to be $GIT_UPSTREAM/HEAD"
+    exit 1
+  fi
+fi
+
+UPSTREAM_HEAD_BRANCH=${UPSTREAM_HEAD#*/}
+RELATIVE_TO=${RELATIVE_TO:-$UPSTREAM_HEAD}
+RELATIVE_TO_BRANCH=${RELATIVE_TO#*/}
+
 set -e
 
-RELATIVE_TO=${RELATIVE_TO:-upstream/master}
-RELATIVE_TO_EXCEPT=${RELATIVE_TO#*/}
-GIT_ORIGIN=${GIT_ORIGIN:-origin}
+echo "Pruning branches relative to $RELATIVE_TO..."
 
 # Update the remotes and remove any branches that no longer exist
-git fetch --prune origin 2>/dev/null || true
-git fetch --prune upstream 2>/dev/null || true
+git fetch --prune $GIT_ORIGIN 2>/dev/null || true
+git fetch --prune $GIT_UPSTREAM 2>/dev/null || true
 
-# Remove local fully merged branches, except the main branch  and the current branch
-BRANCH_LIST=($(git branch --merged $RELATIVE_TO | { grep -v "\s$RELATIVE_TO_EXCEPT\$" || true; } | { grep -v '^*' || true; } | sort))
+# Remove local fully merged branches, except the main branch and the current branch
+BRANCH_LIST=($(git branch --merged $RELATIVE_TO | { grep -v "\s$RELATIVE_TO_BRANCH\$" || true; } | { grep -v '^*' || true; } | sort))
 if [ ${#BRANCH_LIST[@]} -gt 0 ]; then
   echo
   echo "The following local branches are fully merged and will be removed:"
@@ -19,13 +38,15 @@ if [ ${#BRANCH_LIST[@]} -gt 0 ]; then
   read -p "Remove (y/N)? "
   if [ "$REPLY" == "y" ]; then
     printf '%s\0' "${BRANCH_LIST[@]}" | xargs -0 git branch -D
+  else
+    echo "You can manually remove these local branches with 'git branch -D <branch>."
   fi
 else
   echo "There are no local branches to be removed."
 fi
 
 # Remove remote fully merged branches, except the main branch
-BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep "$GIT_ORIGIN/" | { grep -v 'HEAD ->' || true; } | sed "s/$GIT_ORIGIN\///" | { grep -v "\s$RELATIVE_TO_EXCEPT\$" || true; } | sort))
+BRANCH_LIST=($(git branch -r --merged $RELATIVE_TO | grep "$GIT_ORIGIN/" | { grep -v 'HEAD ->' || true; } | sed "s/$GIT_ORIGIN\///" | { grep -v "\s$RELATIVE_TO_BRANCH\$" || true; } | { grep -v "\s$UPSTREAM_HEAD_BRANCH\$" || true; } | sort))
 if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
   echo
   echo "The following remote branches are fully merged and will be removed:"
@@ -34,6 +55,8 @@ if [ "${#BRANCH_LIST[@]}" -gt 0 ]; then
   read -p "Remove (y/N)? "
   if [ "$REPLY" == "y" ]; then
     printf '%s\0' "${BRANCH_LIST[@]}" | xargs -0 git push $GIT_ORIGIN --delete
+  else
+    echo "You can manually remove these remote branches with 'git push $GIT_ORIGIN --delete <branch>"
   fi
 else
   echo "There are no remote branches to be removed."

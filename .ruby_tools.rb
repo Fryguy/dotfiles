@@ -49,7 +49,12 @@ module RubyTools
   end
 
   module Profiler
-    FLAMEGRAPH_EXE = File.expand_path("~/projects/external/FlameGraph/flamegraph.pl")
+    def self.flamegraph_exe
+      return @flamegraph_exe if defined?(@flamegraph_exe)
+
+      stackprof_path = Gem::Specification.find_by_name("stackprof").full_gem_path
+      @flamegraph_exe = stackprof_path && Pathname.new(stackprof_path).join("vendor/FlameGraph/flamegraph.pl")
+    end
 
     def self.profile(file_prefix = "ruby_prof_profile")
       require_without_bundler "ruby-prof"
@@ -86,7 +91,7 @@ module RubyTools
       end
       files << file
 
-      if FLAMEGRAPH_EXE.exist?
+      if flamegraph_exe&.exist?
         have_gem =
           begin
             require_without_bundler 'ruby-prof-flamegraph'
@@ -101,7 +106,7 @@ module RubyTools
             f.close
 
             file = base_path.join("#{file_prefix}_flame_graph.svg")
-            `#{FLAMEGRAPH_EXE} --countname=ms '#{f.path}' > '#{file}'`
+            `#{flamegraph_exe} --countname=ms '#{f.path}' > '#{file}'`
             files << file
           end
         end

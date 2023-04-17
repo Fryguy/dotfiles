@@ -58,20 +58,23 @@ done
 if [ "$IS_MAC" == "true" ]; then
 	target="Library/KeyBindings/DefaultKeyBinding.dict"
 	link_file "$DIR/$target" "$HOME/$target"
-
-	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
-else
-	link_file "/mnt/c/Program Files/Sublime Text 3/subl.exe" "$HOME/bin/subl"
 fi
 
-IFS=$'\n' files=($(ls "Sublime Text 3/Packages/User"))
-for target in ${files[@]}; do
-	if [ "$IS_MAC" == "true" ]; then
-		copy=false
-		target_dir="$HOME/Library/Application Support"
-	else
-		copy=true
-		target_dir="$USERPROFILE/AppData/Roaming"
-	fi
-	link_file "$DIR/Sublime Text 3/Packages/User/$target" "$target_dir/Sublime Text 3/Packages/User/$target" "$copy"
-done
+# Temporarily disable Sublime
+#if [ "$IS_MAC" == "true" ]; then
+#	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
+#else
+#	link_file "/mnt/c/Program Files/Sublime Text 3/subl.exe" "$HOME/bin/subl"
+#fi
+
+#IFS=$'\n' files=($(ls "Sublime Text 3/Packages/User"))
+#for target in ${files[@]}; do
+#	if [ "$IS_MAC" == "true" ]; then
+#		copy=false
+#		target_dir="$HOME/Library/Application Support"
+#	else
+#		copy=true
+#		target_dir="$USERPROFILE/AppData/Roaming"
+#	fi
+#	link_file "$DIR/Sublime Text 3/Packages/User/$target" "$target_dir/Sublime Text 3/Packages/User/$target" "$copy"
+#done

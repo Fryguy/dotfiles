@@ -1,0 +1,58 @@
+#/bin/bash
+
+# Inspired by https://www.darraghoriordan.com/2021/09/15/vscode-default-text-files-mac/
+
+which -s duti
+if [ $? -ne 0 ]; then
+  echo "ERROR: duti must be installed. Install with `brew install duti`."
+  exit 1
+fi
+
+set -e
+
+vscode_id=$(osascript -e 'id of app "Visual Studio Code"')
+if [ -z "$vscode_id" ]; then
+  echo "ERROR: Unable to find Visual Studio Code id"
+  exit 1
+fi
+
+duti -s $vscode_id public.json all
+duti -s $vscode_id public.plain-text all
+duti -s $vscode_id public.python-script all
+duti -s $vscode_id public.shell-script all
+duti -s $vscode_id public.source-code all
+duti -s $vscode_id public.text all
+duti -s $vscode_id public.unix-executable all
+# this works for files without a filename extension
+duti -s $vscode_id public.data all
+
+duti -s $vscode_id .c all
+duti -s $vscode_id .cpp all
+duti -s $vscode_id .cs all
+duti -s $vscode_id .css all
+duti -s $vscode_id .diff all
+duti -s $vscode_id .go all
+duti -s $vscode_id .java all
+duti -s $vscode_id .js all
+duti -s $vscode_id .sass all
+duti -s $vscode_id .scss all
+duti -s $vscode_id .less all
+duti -s $vscode_id .vue all
+duti -s $vscode_id .cfg all
+duti -s $vscode_id .json all
+duti -s $vscode_id .jsx all
+duti -s $vscode_id .log all
+duti -s $vscode_id .lua all
+duti -s $vscode_id .md all
+duti -s $vscode_id .patch all
+duti -s $vscode_id .php all
+duti -s $vscode_id .pl all
+duti -s $vscode_id .py all
+duti -s $vscode_id .rb all
+duti -s $vscode_id .ts all
+duti -s $vscode_id .tsx all
+duti -s $vscode_id .txt all
+duti -s $vscode_id .conf all
+duti -s $vscode_id .yaml all
+duti -s $vscode_id .yml all
+duti -s $vscode_id .toml all

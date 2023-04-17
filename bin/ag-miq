@@ -1,15 +1,28 @@
 #!/bin/bash
 
-ag --ignore-dir manageiq-release \
+ag \
+  --ignore-dir legacy \
+  --ignore-dir brewmaster \
+  --ignore-dir search \
+  --ignore-dir manageiq-release \
+  --ignore-dir manageiq-legacy \
   --ignore-dir manageiq_docs \
   --ignore-dir openshift-docs \
+  --ignore-dir intersight-sdk-ruby \
   --ignore-dir 'manageiq/public/packs' \
   --ignore-dir 'log' \
   --ignore-dir 'logs' \
   --ignore-dir 'repos' \
   --ignore-dir 'vcr_cassettes' \
+  --ignore-dir 'releases_analytics' \
+  --ignore-dir 'ruport/examples' \
+  --ignore-dir 'oldjs/locale' \
+  --ignore-dir 'manageiq.org/site/docs/reference' \
+  --ignore-dir 'react-forms/packages/mui-component-mapper/vendor' \
   --ignore 'Gemfile.lock' \
   --ignore 'manageiq-ui-service.json' \
+  --ignore 'notices.txt' \
+  --ignore '*.svg' \
   "$@" \
-  ~/dev/search \
+  ~/dev \
   | grep -v "\.\(js\|js\.map\|log\|po\|pot\):"

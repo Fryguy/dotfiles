@@ -3,9 +3,12 @@
 set -e
 
 SOURCE_REPO=${SOURCE_REPO:-Fryguy/dotfiles}
+DIR=$HOME/projects/dotfiles
 
-mkdir ~/projects
-git clone git@github.com:$SOURCE_REPO ~/projects/dotfiles
-cd ~/projects/dotfiles
-./setup.sh
+if [ ! -d $DIR ]; then
+  mkdir -p $(dirname $DIR)
+  git clone git@github.com:$SOURCE_REPO $DIR
+fi
+cd $DIR
+#./setup.sh
 

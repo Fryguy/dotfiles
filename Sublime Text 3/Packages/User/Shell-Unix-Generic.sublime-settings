@@ -1,16 +1,17 @@
 {
 	"extensions":
 	[
-		".profile",
-		"bash",
 		"bashrc",
-		"sh",
-		"zlogin",
+		"ash",
+		"zshrc",
 		"zlogout",
 		"zpreztorc",
+		"sh",
 		"zprofile",
+		"bash",
 		"zsh",
 		"zshenv",
-		"zshrc",
+		".profile",
+		"zlogin",
 	],
 }

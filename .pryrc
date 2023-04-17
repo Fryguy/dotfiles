@@ -3,29 +3,23 @@ require "pry"
 Pry.config.theme_options = {:paint_key_as_symbol => true}
 Pry.config.theme = "twilight"
 
+PRY_FILTER = %r{/(?:gems/(?:pry|pry-byebug|irb)-\d|lib/ruby/\d\.\d\.\d/irb|bin/irb|.irbrc)}.freeze
 Pry.config.exception_handler = proc do |output, exception, _|
   filter_paths =  Gem.path.map { |gem_path| File.join(gem_path, "gems") } # Gem paths
   filter_paths << File.dirname(RbConfig::CONFIG["prefix"]) # Ruby path
 
-  lines = exception.full_message.lines
-  reversed = lines[0]&.include?("Traceback")
-  iter = reversed ? :reverse_each : :each
+  lines = exception.full_message.lines.each_with_object([]) do |line, arr|
+    next if line.match?(PRY_FILTER)
 
-  saw_pry = nil
-  lines = lines.send(iter).with_object([]) do |line, arr|
     # Shorten gem and Ruby paths
-    #if path = filter_paths.find { |path| line.include?(path) }
-    #  line.sub!(%r{#{path}/(.+?)/}, '(\1) ')
-    #end
-    line.sub!(ENV["HOME"], "~")
-
-    # Suppress everything after the line: in `<main>'
-    #next if saw_pry || (saw_pry = line =~ /in `<main>'$/)
+    # if path = filter_paths.find { |path| line.include?(path) }
+    #   line.sub!(%r{#{path}/(.+?)/}, '(\1) ')
+    # end
+    line.sub!(ENV["HOME"], "~") if ENV["HOME"]
 
     arr << line
   end
 
-  lines.reverse! if reversed
   output.print lines.join
 end
 

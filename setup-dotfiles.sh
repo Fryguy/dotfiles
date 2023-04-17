@@ -10,5 +10,5 @@ if [ ! -d $DIR ]; then
   git clone git@github.com:$SOURCE_REPO $DIR
 fi
 cd $DIR
-#./setup.sh
+./setup.sh
 

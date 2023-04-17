@@ -34,6 +34,7 @@ _git_lg () { _git_log "$@"; }
 export PATH=$PATH:$HOME/projects/external/git-aliae/bin
 export PATH=$PATH:$HOME/projects/external/git-aliae/wip
 export PATH=$PATH:$HOME/projects/external/DanielVartanov/willgit/bin
+export PATH=$PATH:$HOME/projects/external/newren/git-filter-repo
 
 # GPG
 export GPG_TTY=$(tty)

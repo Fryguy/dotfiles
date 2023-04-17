@@ -54,6 +54,9 @@ do
 		link_file "$DIR/$target-linux" "$HOME/$target"
 	fi
 done
+chown -R $(whoami) $HOME/.gnupg/
+chmod 600 $HOME/.gnupg/*
+chmod 700 $HOME/.gnupg
 
 if [ "$IS_MAC" == "true" ]; then
 	target="Library/KeyBindings/DefaultKeyBinding.dict"

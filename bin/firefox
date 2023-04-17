@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ "$@" == "" ]]; then
+	open -a /Applications/Firefox.app
+else
+	open -a /Applications/Firefox.app -g "$@"
+fi

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# From http://superuser.com/questions/556463/converting-video-to-webm-with-ffmpeg-avconv/556677#556677
+#   and for the scaling info: https://trac.ffmpeg.org/wiki/Scaling
+#   Also useful:
+#     https://trac.ffmpeg.org/wiki/Encode/VP9
+#     https://developers.google.com/media/vp9/settings/vod/
+#     https://slhck.info/video/2017/02/24/crf-guide.html
+#
+# Requires installation of ffmpeg: brew install ffmpeg
+
+source=$1
+if [ -z "$source" ]; then
+  echo "USAGE: $(basename $0) source.mov [dest.webm]"
+  exit 1
+fi
+
+dest=${1/%.mov/.webm}
+dest=${2:-$dest}
+
+ffmpeg -i "$source" -c:v libvpx-vp9 -b:v 0 -crf 31 -vf scale=-1:360 "$dest"

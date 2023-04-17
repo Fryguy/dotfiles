@@ -1,3 +1,3 @@
 #! /bin/bash
-commit=$(perl -ne 'print if ($seen{$_} .= @ARGV) =~ /10$/' <(git rev-list --ancestry-path $1..master) <(git rev-list --first-parent $1..master) | tail -n 1)
-git log -1 --oneline $commit | cut -d ' ' -f 5
+PR=$(grep -Fxf <(git rev-list --ancestry-path $1..upstream/master) <(git rev-list --first-parent $1..upstream/master) | tail -n 1 | xargs git log -1 --pretty=format:%s | grep -o "\d\+" | head -1)
+[ -n "$PR" ] && echo "https://github.com/$(git remote get-url upstream | grep -o "[^:/]\+/[^/]\+$")/pull/$PR"

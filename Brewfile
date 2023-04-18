@@ -17,6 +17,7 @@ cask "iterm2"
 brew "gnupg"
 brew "pinentry-mac"
 #cask "sublime-text"
+cask "visual-studio-code"
 brew "postgresql@13", restart_service: true, link: true
 brew "memcached", restart_service: true
 brew "redis", restart_service: true

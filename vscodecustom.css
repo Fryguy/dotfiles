@@ -1,0 +1,6 @@
+.monaco-icon-label.folder-icon > .monaco-icon-label-container > .monaco-icon-name-container > .label-name {
+  font-weight: 500;
+}
+.monaco-icon-label.file-icon > .monaco-icon-label-container > .monaco-icon-name-container > .label-name {
+  filter: brightness(0.65);
+}

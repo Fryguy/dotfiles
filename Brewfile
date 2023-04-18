@@ -20,6 +20,7 @@ brew "pinentry-mac"
 brew "postgresql@13", restart_service: true, link: true
 brew "memcached", restart_service: true
 brew "redis", restart_service: true
+brew "kafka"
 brew "chruby"
 brew "ruby-install"
 brew "cmake"
@@ -64,5 +65,8 @@ brew "beeftornado/rmtree/brew-rmtree"
 
 # Other apps
 cask "day-o"
+cask "remarkable"
+cask "skitch"
 cask "slack"
 cask "spotify"
+cask "zoom"

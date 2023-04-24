@@ -108,6 +108,7 @@ export BUNDLER_EDITOR=$HOME/bin/subl
 alias be="bundle exec"
 
 # Docker
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 docker() {
   custom_docker_cmd="docker-$1"
   if [ -x "$(which "$custom_docker_cmd")" ]; then

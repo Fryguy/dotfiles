@@ -63,13 +63,15 @@ if [ "$IS_MAC" == "true" ]; then
 	link_file "$DIR/$target" "$HOME/$target"
 fi
 
+if [ "$IS_MAC" == "true" ]; then
+	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/.config/bat/themes/Twilight (Fryguy).tmTheme"
+fi
+
 # Temporarily disable Sublime
-#if [ "$IS_MAC" == "true" ]; then
-#	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/Library/Preferences/bat/themes/Twilight (Fryguy).tmTheme"
-#else
+#if [ "$IS_MAC" != "true" ]; then
 #	link_file "/mnt/c/Program Files/Sublime Text 3/subl.exe" "$HOME/bin/subl"
 #fi
-
+#
 #IFS=$'\n' files=($(ls "Sublime Text 3/Packages/User"))
 #for target in ${files[@]}; do
 #	if [ "$IS_MAC" == "true" ]; then

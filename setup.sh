@@ -67,6 +67,14 @@ if [ "$IS_MAC" == "true" ]; then
 	link_file "$DIR/Sublime Text 3/Packages/User/Twilight (Fryguy).tmTheme" "$HOME/.config/bat/themes/Twilight (Fryguy).tmTheme"
 fi
 
+# Install git extensions
+if [ ! -d "$HOME/projects/external/ConradIrwin/git-aliae" ]; then
+	git clone git@github.com:ConradIrwin/git-aliae.git -o upstream $HOME/projects/external/ConradIrwin/git-aliae
+fi
+if [ ! -d "$HOME/projects/external/DanielVartanov/willgit" ]; then
+	git clone git@github.com:DanielVartanov/willgit.git -o upstream $HOME/projects/external/DanielVartanov/willgit
+fi
+
 # Temporarily disable Sublime
 #if [ "$IS_MAC" != "true" ]; then
 #	link_file "/mnt/c/Program Files/Sublime Text 3/subl.exe" "$HOME/bin/subl"

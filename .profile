@@ -41,8 +41,8 @@ _git_stash_index () { _git_stash "$@"; }
 _git_stash_without_index () { _git_stash "$@"; }
 _git_lg () { _git_log "$@"; }
 #   Third Party git extensions
-export PATH=$PATH:$HOME/projects/external/git-aliae/bin
-export PATH=$PATH:$HOME/projects/external/git-aliae/wip
+export PATH=$PATH:$HOME/projects/external/ConradIrwin/git-aliae/bin
+export PATH=$PATH:$HOME/projects/external/ConradIrwin/git-aliae/wip
 export PATH=$PATH:$HOME/projects/external/DanielVartanov/willgit/bin
 
 # GPG

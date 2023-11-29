@@ -47,7 +47,6 @@
 	follow = true
 [commit]
 	gpgsign = true
-	template = ~/.stCommitMsg
 [branch]
 	sort = -committerdate
 [advice]

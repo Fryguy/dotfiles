@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Requires installation of ffmpeg: brew install ffmpeg
+
+source=$1
+if [ -z "$source" ]; then
+  echo "USAGE: $(basename $0) source.mov [dest.mp4]"
+  exit 1
+fi
+
+dest=${1/%.mov/.mp4}
+dest=${2:-$dest}
+
+ffmpeg -i "$source" -vcodec h264 -acodec aac "$dest"

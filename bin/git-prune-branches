@@ -29,7 +29,7 @@ git fetch --prune $GIT_ORIGIN 2>/dev/null || true
 git fetch --prune $GIT_UPSTREAM 2>/dev/null || true
 
 # Remove local fully merged branches, except the main branch and the current branch
-BRANCH_LIST=($(git branch --merged $RELATIVE_TO | { grep -v "\s$RELATIVE_TO_BRANCH\$" || true; } | { grep -v '^*' || true; } | sort))
+BRANCH_LIST=($(git branch --merged $RELATIVE_TO | { grep -v "\s$RELATIVE_TO_BRANCH\$" || true; } | { grep -v "\s$UPSTREAM_HEAD_BRANCH\$" || true; } | { grep -v '^*' || true; } | sort))
 if [ ${#BRANCH_LIST[@]} -gt 0 ]; then
   echo
   echo "The following local branches are fully merged and will be removed:"

@@ -4,6 +4,7 @@
 .lockfiles/
 .rubocop-http*
 .tags
+.vscode/
 bower_components/
 coverage/
 DO_NOT_COMMIT/

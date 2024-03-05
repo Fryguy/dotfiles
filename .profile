@@ -137,7 +137,7 @@ alias vmdb="[ -f ~/dev/manageiq/vmdb/Gemfile ] && cd ~/dev/manageiq/vmdb || cd ~
 #   to compile rugged with SSH support
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PACKAGE_PREFIX/opt/openssl/lib/pkgconfig
 #   secrets store
-alias miq-pass='PASSWORD_STORE_DIR=$HOME/dev/private/secrets pass'
+alias miq-pass='PASSWORD_STORE_DIR="$MIQ_PASS_STORE_DIR" pass'
 
 # Tokens
 source $HOME/.profile_tokens

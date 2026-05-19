@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Run a command without a TTY
+# Usage: no-tty [ENV_VAR=value ...] command [args...]
+# Example: no-tty RAILS_ENV=production bundle exec rake db:migrate
+
+if [ $# -eq 0 ]; then
+  echo "Usage: no-tty [ENV_VAR=value ...] command [args...]" >&2
+  echo "Runs a command without a TTY, simulating cron or CI environments" >&2
+  exit 1
+fi
+
+# Detach from TTY by redirecting stdin from /dev/null and piping output
+# This simulates how commands run in cron or CI environments
+# The env command handles environment variable assignments (VAR=value)
+# and executes the remaining arguments as the command
+# Use PIPESTATUS to preserve the exit code from env, not from cat
+env "$@" < /dev/null 2>&1 | cat
+exit "${PIPESTATUS[0]}"
